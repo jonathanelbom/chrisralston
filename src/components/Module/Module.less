@@ -1,0 +1,43 @@
+.Module {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    flex-grow: 0;
+    position: relative;
+    // padding: 0 25%;
+}
+
+.text-module {
+    font-size: 18px;
+    line-height: 36px;
+    max-width: 70%;
+
+    &--dark {
+        color: #000;
+    }
+
+    &--light {
+        color: #fff;
+    }
+
+    > * {
+        max-width: 80%;
+    }
+
+    > .group {
+
+        &:not(:last-child) {
+            margin-bottom: 42px;
+        }
+
+        > .title {
+            margin-bottom: 10px;
+        }
+
+        > .content {
+            line-height: 32px;
+        }
+    }
+}
