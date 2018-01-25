@@ -9,7 +9,8 @@ class Module extends Component {
             backgroundColor,
             image,
             text,
-            imagePosition
+            imagePosition,
+            stacked
         } = this.props;
         console.log('Module > render\n\tthis.props:', this.props);
         let style = {
@@ -19,7 +20,7 @@ class Module extends Component {
             backgroundRepeat: 'no-repeat',
             backgroundPosition: 'center'
         };
-        const classname = `Module col-${width}`;
+        const classname = `Module ${stacked ? 'Module--stacked ' : ''}col-${width}`;
         return (
             <div
                 className={classname}

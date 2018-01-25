@@ -1,4 +1,5 @@
-.Module {
+.Module,
+.StackedModule {
   height: 100%;
   display: flex;
   align-items: center;
@@ -7,10 +8,17 @@
   flex-grow: 0;
   position: relative;
 }
+.StackedModule {
+  flex-flow: column;
+}
+.Module--stacked {
+  height: 50%;
+  width: 100%;
+}
 .text-module {
   font-size: 18px;
   line-height: 36px;
-  max-width: 70%;
+  width: 60%;
 }
 .text-module--dark {
   color: #000;
