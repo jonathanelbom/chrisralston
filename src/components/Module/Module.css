@@ -1,5 +1,6 @@
 .Module,
-.StackedModule {
+.StackedModule,
+.NavigationModule {
   height: 100%;
   display: flex;
   align-items: center;
@@ -7,6 +8,9 @@
   flex-shrink: 0;
   flex-grow: 0;
   position: relative;
+}
+.NavigationModule {
+  background-color: #fff;
 }
 .StackedModule {
   flex-flow: column;

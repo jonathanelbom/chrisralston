@@ -12,8 +12,8 @@ class Module extends Component {
             imagePosition,
             stacked
         } = this.props;
-        console.log('Module > render\n\tthis.props:', this.props);
-        let style = {
+        // console.log('Module > render\n\tthis.props:', this.props);
+        const style = {
             backgroundColor: backgroundColor ? backgroundColor : '',
             backgroundImage: image ? `url(${image}` : '',
             backgroundSize: 'cover',

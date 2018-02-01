@@ -154,6 +154,7 @@ const viggle = {
                     )
                 },
                 {
+                    type: 'nav',
                     width: 8,
                     backgroundColor: COLORS.white,
                 }

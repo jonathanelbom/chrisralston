@@ -1,9 +1,28 @@
+@font-face {
+  font-family: 'SailecRegularWeb';
+  src: local('SailecRegularWeb'), url(fonts/SailecRegularWeb.woff) format('woff'), url(fonts/SailecRegularWeb.woff2) format('woff2');
+}
+@font-face {
+  font-family: 'SailecMediumWeb';
+  src: local('SailecMediumWeb'), url(fonts/SailecMediumWeb.woff) format('woff'), url(fonts/SailecMediumWeb.woff2) format('woff2');
+}
+@font-face {
+  font-family: 'SailecBoldWeb';
+  src: local('SailecBoldWeb'), url(fonts/SailecBoldWeb.woff) format('woff2'), url(fonts/SailecBoldWeb.woff) format('woff2');
+}
 * {
   box-sizing: border-box;
+}
+*.bold {
+  font-family: 'SailecBoldWeb', sans-serif;
+}
+*.med {
+  font-family: 'SailecMediumWeb', sans-serif;
 }
 html,
 body {
   background: #e3e3e3;
+  font-family: 'SailecRegularWeb', sans-serif;
 }
 .col-1 {
   width: 8.33%;

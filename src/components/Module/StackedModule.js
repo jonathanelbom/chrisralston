@@ -7,11 +7,11 @@ class StackedModule extends Component {
     render() {
         const {
             width,
-            modules
+            modules = []
         } = this.props;
         const classname = `StackedModule col-${width}`;
 
-        console.log('StackedModule > render\n\tthis.props:', this.props);
+        // console.log('StackedModule > render\n\tthis.props:', this.props);
         return (
             <div className={classname}>
                 {modules.map((module, i) => {

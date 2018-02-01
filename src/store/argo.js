@@ -236,7 +236,8 @@ const argo = {
                 },
                 {
                     width: 8,
-                    backgroundColor: COLORS.white,
+                    type: 'nav',
+                    backgroundColor: COLORS.white
                 }
             ]
         }
