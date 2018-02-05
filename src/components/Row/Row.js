@@ -6,6 +6,17 @@ import NavigationModule from '../Module/NavigationModule';
 import './Row.css';
 
 class Row extends Component {
+    getModule(type, data, index) {
+        switch (type) {
+            case 'stacked':
+                return <StackedModule key={index} {...data} />;
+            case 'nav':
+                return <NavigationModule key={index} {...data} />;
+            default:
+                return <Module key={index} {...data} />;
+        }
+    };
+
     render() {
         // console.log('render > Row\n\t this.props:', this.props);
         const {
@@ -15,12 +26,8 @@ class Row extends Component {
         return (
             <div className={`Row${type === 'hero' ? ' Row--hero' : ''}`} >
                 {modules.map((module, i) => {
-                    if (module.type === 'stacked') {
-                        return <StackedModule key={i} {...module} />;
-                    } else if (module.type === 'nav') {
-                        return <NavigationModule key={i} {...module} />;
-                    }
-                    return <Module key={i} {...module} />;
+                    const {type} = module;
+                    return this.getModule(type, module, i);
                 })}
             </div>
         );

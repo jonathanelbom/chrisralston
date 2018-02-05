@@ -21,80 +21,71 @@ const COLORS = {
 }
 const argo = {
     rows: [
+        // ------------ row ------------
         {
             type: 'hero',
             modules: [
+                // ---- module ----
                 {
                     width: 12,
                     backgroundColor: COLORS.dark,
-                    image: computer,
-                    imagePosition: 'center'
+                    elements: [
+                        {
+                            type: 'image',
+                            backgroundData: {
+                                backgroundImage: `url(${computer}`,
+                                backgroundSize: 'cover',
+                                backgroundRepeat: 'no-repeat',
+                                backgroundPosition: 'center'
+                            }
+                        }
+                    ]
                 }
             ]
         },
+        // ------------ row ------------
         {
             modules: [
+                // ---- module ----
                 {
                     width: 4,
                     backgroundColor: COLORS.white,
-                    textColor: 'dark',
-                    text: (
-                        <div className="text-module text-module--dark">
-                            <div className="group">
-                                <div className="title">Client</div>
-                                <div className="content">Argo Energy</div>
-                            </div>
-                            <div className="group">
-                                <div className="title">Role</div>
-                                <div className="content">Sr. Interaction Designer</div>
-                            </div>
-                            <div className="group">
-                                <div className="title">Services</div>
-                                <div className="content">
-                                    <div>Product Design</div>
-                                    <div>Design Research</div>
-                                    <div>Interaction Design</div>
+                    elements: [
+                        {
+                            type: 'markup',
+                            markup: (
+                                <div className="text-module text-module--dark">
+                                    <div className="group">
+                                        <div className="title">Client</div>
+                                        <div className="content">Argo Energy</div>
+                                    </div>
+                                    <div className="group">
+                                        <div className="title">Role</div>
+                                        <div className="content">Sr. Interaction Designer</div>
+                                    </div>
+                                    <div className="group">
+                                        <div className="title">Services</div>
+                                        <div className="content">
+                                            <div>Product Design</div>
+                                            <div>Design Research</div>
+                                            <div>Interaction Design</div>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
-                    )
+                            )
+                        }
+                    ]
                 },
+                // ---- module ----
                 {
                     width: 8,
                     backgroundColor: COLORS.darkGray,
-                    text: (
-                        <div className="text-module text-module--light">
-                            <span>Agro Energy is a leader in energy systems in the agricultural sector in the Netherlands. Agro approached our team at TAM/TAM to update their platform, Energy Manager, to better accommodate greenhouse farmers' ability to buy and sell energy in real-time</span>
-                        </div>
-                    )
-                }
-            ]
-        },
-        {
-            modules: [
-                {
-                    width: 8,
-                    backgroundColor: COLORS.dark,
-                    image: farm,
-                    imagePosition: 'center'
-                },
-                {
-                    type: 'stacked',
-                    width: 4,
-                    modules: [
+                    elements: [
                         {
-                            backgroundColor: COLORS.dark,
-                            image: mark,
-                            imagePosition: 'center'
-                        },
-                        {
-                            backgroundColor: COLORS.white,
-                            text: (
-                                <div className="text-module text-module--dark">
-                                    <div className="group">
-                                        <div className="title">The Dial</div>
-                                        <div className="content">A confident new mark for a refreshed platform</div>
-                                    </div>
+                            type: 'markup',
+                            markup: (
+                                <div className="text-module text-module--light">
+                                    <span>Agro Energy is a leader in energy systems in the agricultural sector in the Netherlands. Agro approached our team at TAM/TAM to update their platform, Energy Manager, to better accommodate greenhouse farmers' ability to buy and sell energy in real-time</span>
                                 </div>
                             )
                         }
@@ -102,116 +93,285 @@ const argo = {
                 }
             ]
         },
+        // ------------ row ------------
         {
             modules: [
+                // ---- module ----
+                {
+                    width: 8,
+                    backgroundColor: COLORS.dark,
+                    elements: [
+                        {
+                            type: 'image',
+                            backgroundData: {
+                                backgroundImage: `url(${farm}`,
+                                backgroundSize: 'cover',
+                                backgroundRepeat: 'no-repeat',
+                                backgroundPosition: 'center'
+                            }
+                        }
+                    ]
+                },
+                // ---- module ----
+                {
+                    type: 'stacked',
+                    width: 4,
+                    modules: [
+                        {
+                            backgroundColor: COLORS.dark,
+                            elements: [
+                                {
+                                    type: 'image',
+                                    backgroundData: {
+                                        backgroundImage: `url(${mark}`,
+                                        backgroundSize: 'cover',
+                                        backgroundRepeat: 'no-repeat',
+                                        backgroundPosition: 'center'
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            backgroundColor: COLORS.white,
+                            elements: [
+                                {
+                                    type: 'markup',
+                                    markup: (
+                                        <div className="text-module text-module--dark">
+                                            <div className="group">
+                                                <div className="title">The Dial</div>
+                                                <div className="content">A confident new mark for a refreshed platform</div>
+                                            </div>
+                                        </div>
+                                    )
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        // ------------ row ------------
+        {
+            modules: [
+                // ---- module ----
                 {
                     width: 12,
                     backgroundColor: COLORS.lightGray,
-                    image: dashboards,
-                    imagePosition: 'center'
+                    elements: [
+                        {
+                            type: 'image',
+                            backgroundData: {
+                                backgroundImage: `url(${dashboards}`,
+                                backgroundSize: 'cover',
+                                backgroundRepeat: 'no-repeat',
+                                backgroundPosition: 'center'
+                            }
+                        }
+                    ]
                 }
             ]
         },
+        // ------------ row ------------
         {
             modules: [
+                // ---- module ----
                 {
                     width: 12,
                     backgroundColor: COLORS.dark,
-                    image: dashboard,
-                    imagePosition: 'center'
+                    elements: [
+                        {
+                            type: 'image',
+                            backgroundData: {
+                                backgroundImage: `url(${dashboard}`,
+                                backgroundSize: 'cover',
+                                backgroundRepeat: 'no-repeat',
+                                backgroundPosition: 'center'
+                            }
+                        }
+                    ]
                 }
             ]
         },
+        // ------------ row ------------
         {
             modules: [
+                // ---- module ----
                 {
                     type: 'stacked',
                     width: 4,
                     modules: [
                         {
                             backgroundColor: COLORS.white,
-                            text: (
-                                <div className="text-module text-module--dark">
-                                    <div className="group">
-                                        <div className="title">Energy Manager, whereever</div>
-                                        <div className="content">Trade on the go, from the palm of your hand</div>
-                                    </div>
-                                </div>
-                            )
+                            elements: [
+                                {
+                                    type: 'markup',
+                                    markup: (
+                                        <div className="text-module text-module--dark">
+                                            <div className="group">
+                                                <div className="title">Energy Manager, whereever</div>
+                                                <div className="content">Trade on the go, from the palm of your hand</div>
+                                            </div>
+                                        </div>
+                                    )
+                                }
+                            ]
                         },
                         {
                             backgroundColor: COLORS.dark,
                         }
                     ]
                 },
+                // ---- module ----
                 {
                     width: 8,
                     backgroundColor: COLORS.white,
-                    image: phone,
-                    imagePosition: 'center'
+                    elements: [
+                        {
+                            type: 'image',
+                            backgroundData: {
+                                backgroundImage: `url(${phone}`,
+                                backgroundSize: 'cover',
+                                backgroundRepeat: 'no-repeat',
+                                backgroundPosition: 'center'
+                            }
+                        }
+                    ]
                 },
 
             ]
         },
+        // ------------ row ------------
         {
             modules: [
+                // ---- module ----
                 {
                     width: 6,
                     backgroundColor: COLORS.dark,
-                    image: phone1,
-                    imagePosition: 'center'
+                    elements: [
+                        {
+                            type: 'image',
+                            backgroundData: {
+                                backgroundImage: `url(${phone1}`,
+                                backgroundSize: 'cover',
+                                backgroundRepeat: 'no-repeat',
+                                backgroundPosition: 'center'
+                            }
+                        }
+                    ]
                 },
+                // ---- module ----
                 {
                     width: 6,
                     backgroundColor: COLORS.dark,
-                    image: phone2,
-                    imagePosition: 'center'
+                    elements: [
+                        {
+                            type: 'image',
+                            backgroundData: {
+                                backgroundImage: `url(${phone2}`,
+                                backgroundSize: 'cover',
+                                backgroundRepeat: 'no-repeat',
+                                backgroundPosition: 'center'
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+        // ------------ row ------------
+        {
+            modules: [
+                // ---- module ----
+                {
+                    width: 6,
+                    backgroundColor: COLORS.dark,
+                    elements: [
+                        {
+                            type: 'image',
+                            backgroundData: {
+                                backgroundImage: `url(${phone3}`,
+                                backgroundSize: 'cover',
+                                backgroundRepeat: 'no-repeat',
+                                backgroundPosition: 'center'
+                            }
+                        }
+                    ]
+                },
+                // ---- module ----
+                {
+                    width: 6,
+                    backgroundColor: COLORS.dark,
+                    elements: [
+                        {
+                            type: 'image',
+                            backgroundData: {
+                                backgroundImage: `url(${phone4}`,
+                                backgroundSize: 'cover',
+                                backgroundRepeat: 'no-repeat',
+                                backgroundPosition: 'center'
+                            }
+                        }
+                    ]
                 }
             ]
         },
         {
             modules: [
-                {
-                    width: 6,
-                    backgroundColor: COLORS.dark,
-                    image: phone3,
-                    imagePosition: 'center'
-                },
-                {
-                    width: 6,
-                    backgroundColor: COLORS.dark,
-                    image: phone4,
-                    imagePosition: 'center'
-                }
-            ]
-        },
-        {
-            modules: [
+                // ---- module ----
                 {
                     width: 12,
                     backgroundColor: COLORS.white,
-                    image: watch,
-                    imagePosition: 'center'
+                    elements: [
+                        {
+                            type: 'image',
+                            backgroundData: {
+                                backgroundImage: `url(${watch}`,
+                                backgroundSize: 'cover',
+                                backgroundRepeat: 'no-repeat',
+                                backgroundPosition: 'center'
+                            }
+                        }
+                    ]
                 }
             ]
         },
         {
             modules: [
+                // ---- module ----
                 {
                     width: 12,
                     backgroundColor: COLORS.white,
-                    image: watches,
-                    imagePosition: 'center'
+                    elements: [
+                        {
+                            type: 'image',
+                            backgroundData: {
+                                backgroundImage: `url(${watches}`,
+                                backgroundSize: 'cover',
+                                backgroundRepeat: 'no-repeat',
+                                backgroundPosition: 'center'
+                            }
+                        }
+                    ]
                 }
             ]
         },
         {
             modules: [
+                // ---- module ----
                 {
                     width: 12,
                     backgroundColor: COLORS.lightGray,
-                    image: videoBg,
-                    imagePosition: 'center'
+                    elements: [
+                        {
+                            type: 'image',
+                            backgroundData: {
+                                backgroundImage: `url(${videoBg}`,
+                                backgroundSize: 'cover',
+                                backgroundRepeat: 'no-repeat',
+                                backgroundPosition: 'center'
+                            }
+                        }
+                    ]
                 }
             ]
         },
@@ -220,19 +380,24 @@ const argo = {
                 {
                     width: 4,
                     backgroundColor: COLORS.lightGray,
-                    text: (
-                        <div className="text-module text-module--dark">
-                            <div className="group">
-                                <div className="title">Team</div>
-                                <div className="content">
-                                    <div>Julius Simon</div>
-                                    <div>Danijel Bonacic</div>
-                                    <div>Mark Toonen</div>
-                                    <div>Keyjay Entel</div>
+                    elements: [
+                        {
+                            type: 'markup',
+                            markup: (
+                                <div className="text-module text-module--dark">
+                                    <div className="group">
+                                        <div className="title">Team</div>
+                                        <div className="content">
+                                            <div>Julius Simon</div>
+                                            <div>Danijel Bonacic</div>
+                                            <div>Mark Toonen</div>
+                                            <div>Keyjay Entel</div>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
-                    )
+                            )
+                        }
+                    ]
                 },
                 {
                     width: 8,

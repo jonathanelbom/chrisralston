@@ -12,8 +12,8 @@ const caseStudyMap = {
 };
 
 const caseStudies = [
-    argo,
-    viggle
+    viggle,
+    argo
 ];
 
 class App extends Component {

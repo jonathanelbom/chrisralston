@@ -2,6 +2,7 @@
   "name": "chrisralston2",
   "version": "0.1.0",
   "private": true,
+  "homepage": "http://jonnybomb.com/cralston",
   "dependencies": {
     "classnames": "^2.2.5",
     "react": "^16.2.0",
