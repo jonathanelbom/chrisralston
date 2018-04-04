@@ -11,16 +11,16 @@ class Module extends Component {
 
     renderElements(elements) {
         let elems = [];
-        console.log('elements:', elements);
+        // console.log('elements:', elements);
         if (elements && elements.length > 0) {
             elems = elements.map((element, i) => {
                 const {type} = element;
-                console.log('this.elementsMap:', this.elementsMap, ', type:', type);
+                // console.log('this.elementsMap:', this.elementsMap, ', type:', type);
                 if (this.elementsMap[type])
                 return this.elementsMap[type](element, i)
             });
         }
-        console.log('elems:', elems);
+        // console.log('elems:', elems);
         return elems;
     }
 
@@ -36,7 +36,7 @@ class Module extends Component {
     }
 
     renderMarkup(data, i) {
-        console.log('data.markup:', data.markup)
+        // console.log('data.markup:', data.markup)
         return React.cloneElement(
             data.markup,
             {key: i}
@@ -50,7 +50,7 @@ class Module extends Component {
             stacked,
             elements
         } = this.props;
-        console.log('Module > render\n\tthis.props:', this.props);
+        // console.log('Module > render\n\tthis.props:', this.props);
         const style = {
             backgroundColor: backgroundColor || ''
         };

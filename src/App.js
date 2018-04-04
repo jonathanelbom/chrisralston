@@ -2,9 +2,11 @@ import React, {Component} from 'react';
 import logo from './logo.svg';
 import './App.css';
 
+import LandingPage from './components/LandingPage/LandingPage';
 import CaseStudy from './components/CaseStudy/CaseStudy';
 import argo from './store/argo';
 import viggle from './store/viggle';
+import projects from './store/projects';
 
 const caseStudyMap = {
     '#argo'   : argo,
@@ -12,16 +14,22 @@ const caseStudyMap = {
 };
 
 const caseStudies = [
-    viggle,
-    argo
+    argo,
+    viggle
 ];
+
+const MODE_LANDING_PAGE = 0;
+const MODE_CASE_STUDY = 1;
 
 class App extends Component {
 
     constructor(props) {
         super(props)
 
-        this.state = {index: 0};
+        this.state = {
+            mode: MODE_LANDING_PAGE,
+            index: 0
+        };
 
         window.ralston = window.ralston || {};
         window.ralston.changeDirection = this.changeDirection;
@@ -49,16 +57,21 @@ class App extends Component {
     componentDidUpdate(nextProps, nextState) {
         const {index} = this.state;
         if (index !== nextState.index) {
-            document.documentElement.scrollTop = 0;
+            document.documentElement.scrollTop = 5000;
         }
     }
 
     render() {
-        const {index} = this.state;
+        const {index, mode} = this.state;
         const caseStudy = caseStudies[index];
         return (
             <div className="App">
-                <CaseStudy {...caseStudy} />
+                {mode === MODE_LANDING_PAGE &&
+                    <LandingPage {...projects} />
+                }
+                {mode === MODE_CASE_STUDY &&
+                    <CaseStudy {...caseStudy} />
+                }
             </div>
         );
     }

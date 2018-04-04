@@ -1,14 +1,14 @@
 import React, {Component} from 'react';
-import './CaseStudy.css';
+import './LandingPage.css';
 
 import Row from '../Row/Row';
 
-class CaseStudy extends Component {
+class LandingPage extends Component {
     render() {
-        // console.log('CaseStudy > render\n\t this.props:', this.props);
+        console.log('LandingPage > render\n\t this.props:', this.props);
         const {rows} = this.props;
         return (
-            <div className="CaseStudy">
+            <div className="LandingPage">
                 {rows.map((row, i) => {
                     return (
                         <Row
@@ -22,4 +22,4 @@ class CaseStudy extends Component {
     }
 }
 
-export default CaseStudy;
+export default LandingPage;

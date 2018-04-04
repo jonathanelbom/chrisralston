@@ -17,6 +17,10 @@
   justify-content: center;
   position: relative;
 }
+.Module__inner-wrapper--landing-page {
+  display: block;
+  max-width: 75%;
+}
 .Module__element {
   position: absolute;
   width: 100%;

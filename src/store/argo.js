@@ -20,6 +20,7 @@ const COLORS = {
     white: '#FFFFFF'
 }
 const argo = {
+    id: 'argo',
     rows: [
         // ------------ row ------------
         {
