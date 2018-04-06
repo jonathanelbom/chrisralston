@@ -24,18 +24,35 @@ const PROJECTS = [
 
 class LandingPageModule extends Component {
 
-    onOverOut = (e) => {
-        console.log('Module > onOverOut, e.target:', e.target);
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            overId: null
+        };
+    }
+
+    onOverOut = ({type, id}) => {
+        const {overId} = this.state;
+        // console.log('LandingPageModule > onOverOut > ', type, ', id:', id);
+        if (type === 'mouseover' && overId !== id) {
+            this.setState({overId: id});
+        } else {
+            this.setState({overId: null});
+        }
+    }
+
+    getSetLinkRef(id) {
+        return (ref) => {
+            this[id] = ref;
+            // console.log('this[', id, ']:', this[id]);
+        }
     }
 
     render() {
-        const {
-            width,
-            backgroundColor,
-            stacked,
-            elements
-        } = this.props;
-        console.log('LandingPageModule > render\n\tthis.props:', this.props);
+        const {width, backgroundColor, stacked, elements} = this.props;
+        const {overId} = this.state;
+        // console.log('LandingPageModule > render\n\tthis.props:', this.props, ', this.id:', this.id);
         const style = {
             backgroundColor: backgroundColor || ''
         };
@@ -48,8 +65,11 @@ class LandingPageModule extends Component {
                     {PROJECTS.map((project, index) => (
                         <ProjectLink
                             {...project}
+                            over={project.id === overId}
+                            otherOver={overId && project.id !== overId}
                             key={`project-link-${index}`}
                             onOverOut={this.onOverOut}
+                            ref={this.getSetLinkRef(project.id)}
                         />
                     ))}
                 </div>

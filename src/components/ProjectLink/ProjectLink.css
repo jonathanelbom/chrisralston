@@ -1,4 +1,15 @@
+.ProjectLink__word {
+  display: inline-block;
+}
 .ProjectLink__letter {
   font-size: 80px;
-  pointer-events: none;
+  display: inline-block;
+  min-width: 20px;
+  user-select: none;
+  cursor: pointer;
+  color: #333;
+  transition: opacity 800ms ease;
+  transition-property: opacity, transform;
+  transition-timing-function: ease;
+  will-change: transform;
 }

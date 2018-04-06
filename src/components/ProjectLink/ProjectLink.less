@@ -5,9 +5,29 @@
 @width-short: 63px;
 @width-long: 143px;
 
-.ProjectLink {
-    &__letter {
-        font-size: 80px;
-        pointer-events: none;
-    }
+.ProjectLink__word {
+    display: inline-block;
+}
+
+.ProjectLink__letter {
+    font-size: 80px;
+    display: inline-block;
+    min-width: 20px;
+    // line-height: 80px;
+    user-select: none;
+    cursor: pointer;;
+    // pointer-events: none;
+    color: #333;
+    transition: opacity 800ms ease;
+    transition-property: opacity, transform;
+    transition-timing-function: ease;
+    will-change: transform;
+
+    // &--over {
+    //     color: rgba(0, 0, 0, 0.9);
+    // }
+    //
+    // &--otherOver {
+    //     color: rgba(0, 0, 0, 0.3);
+    // }
 }
