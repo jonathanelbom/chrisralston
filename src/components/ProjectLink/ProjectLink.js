@@ -52,13 +52,16 @@ class ProjectLink extends Component {
             return {
                 //transform: `translateZ(${this.getNumFromRange([-300, 300])}px`,
                 // transform: `perspective(600px) rotateY(${this.getNumFromRange([-60, 60])}deg) translate3d(${this.getNumFromRange([90, 270])}px, ${this.getNumFromRange([-400, 400])}px, ${this.getNumFromRange([-700, 700])}px)`,
-                transform: `perspective(600px) translate3d(${this.getNumFromRange([90, 270])}px, ${this.getNumFromRange([-400, 400])}px, ${this.getNumFromRange([-700, 700])}px)`,
-                // transform: `perspective(600px) rotate3d(.5, .5, .5) translateZ(${this.getNumFromRange([-1000, 1000])}px)`,
-                opacity: '0',
+                //transform: `perspective(600px) translate3d(${this.getNumFromRange([-100, 100])}px, ${this.getNumFromRange([-100, 100])}px, ${this.getNumFromRange([-300, 300])}px)`,
+                //transform: `perspective(600px) rotate3d(.5, .5, .5) translateZ(${this.getNumFromRange([-1000, 1000])}px)`,
+                // opacity: '0',
+                transform: `perspective(600px) translate3d(${this.getNumFromRange([-100, 100])}px, ${this.getNumFromRange([-100, 100])}px, ${this.getNumFromRange([-900, -300])}px)`,
                 pointerEvents: 'none'
             }
         }
-        return {};
+        return {
+            transform: `perspective(600px) translate3d(${this.getNumFromRange([-100, 100])}px, ${this.getNumFromRange([-100, 100])}px, ${this.getNumFromRange([-300, 300])}px)`,
+        };
 
     }
     render() {
