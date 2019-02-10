@@ -1,0 +1,33 @@
+.Header-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 10;
+  mix-blend-mode: difference;
+  pointer-events: none;
+}
+.Header {
+  padding: 64px 0 0;
+  width: 100%;
+  max-width: 1170px;
+  margin: 0 auto;
+  color: #fff;
+  display: flex;
+}
+.Header__logo {
+  flex-grow: 1;
+}
+.Header__nav {
+  display: flex;
+}
+.Header__item {
+  padding: 36px;
+  white-space: nowrap;
+}
+.Header__header {
+  display: flex;
+  justify-content: space-between;
+  width: 90%;
+  margin: 56px 0 64px;
+}

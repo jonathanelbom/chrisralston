@@ -1,0 +1,13 @@
+const constants = {
+    MODE_LANDING_PAGE: 0,
+    MODE_CASE_STUDY: 1,
+    GUTTER: 32,
+    HERO_BLOCK_MAX_HEIGHT: 770,
+    HERO_BLOCK_MIN_HEIGHT: 300,
+    HERO_BLOCK_MAX_WIDTH: 1170,
+    HERO_BLOCK_MIN_WIDTH: 400,
+    BLOCK_MARGIN_MIN: 32,
+    BLOCK_MARGIN_MAX: 80
+};
+
+export default constants;

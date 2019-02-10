@@ -16,6 +16,9 @@
 //     src:url("Fonts/5472515/13469824-539d-4246-850c-0088a2772e0a.eot?#iefix") format("eot"),url("Fonts/5472515/edec1a94-e2a6-4e33-ada9-743e2b241fbb.woff2") format("woff2"),url("Fonts/5472515/aa19e7c7-176b-4241-b77b-aeab4fa42f7e.woff") format("woff"),url("Fonts/5472515/f4999595-c4b4-4928-8a49-887524aa1b76.ttf") format("truetype");
 // }
 
+@dark: #171719;
+@gutter: 32px;
+
 @font-face {
   font-family: 'SailecRegularWeb';
   src: local('SailecRegularWeb'), url(./fonts/SailecRegularWeb.woff) format('woff'), url(./fonts/SailecRegularWeb.woff2) format('woff2');
@@ -40,24 +43,89 @@
     }
 }
 
+html {
+    min-height: 100%;
+    background: #fff; // #e3e3e3;
+    color: @dark;
+    
+}
 html, body {
-    background: #e3e3e3;
     font-family: 'SailecRegularWeb', sans-serif;
+    font-size: 16px;
 }
 
-.col-1 { width: 8.33%; }
-.col-2 { width: 16.66%; }
-.col-3 { width: 25%; }
-.col-4 { width: 33.33%; }
-.col-5 { width: 41.66%; }
-.col-6 { width: 50%; }
-.col-7 { width: 58.33%; }
-.col-8 { width: 66.66%; }
-.col-9 { width: 75%; }
-.col-10 { width: 83.33%; }
-.col-11 { width: 91.66%; }
-.col-12 { width: 100%; }
+.ChrisRalston {
+    min-height: 100vh;
 
-.App {
-    // dfd
+    .CaseStudy-container {
+        padding: 100px @gutter 80px;
+        overflow-x: hidden;
+        overflow-y: scroll;
+        perspective: 10px;
+        perspective-origin: top center;
+        max-height: 100vh;
+        background-color: #fff;
+    }
+
+    .CaseStudy {
+        width: 100%;
+        max-width: 1170px;
+        margin: 0 auto;
+        transform-style: preserve-3d;
+
+        &__title-container {
+            width: 100vw;
+            height: 100vh;
+            position: fixed;
+            z-index: 20;
+            pointer-events: none;
+            > * {
+                pointer-events: none;
+            }
+        }
+
+        &__title-wrapper {
+            width: 100%;
+            height: 100%;
+            max-width: 1288px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        &__title {
+            font-size: 16px;
+            line-height: 32px;
+            position: absolute;
+            transform: rotate(-90deg);
+            transform-origin: top left;
+            left: 0;
+            bottom: 110px;
+            white-space: nowrap;
+
+            &--job {
+                color: #AEB5BC;
+            }
+        }
+    }
+
+    .block--content {
+        width: 100%;
+        overflow: hidden;
+        margin-bottom: 80px;
+        
+        // &:nth-child(2) {
+        //     transform: translateZ(1px) scale(0.9) translateY(-100px);
+        
+        // }
+
+        // &:nth-child(4) {
+        //     transform: translateZ(1px) scale(0.9) translateY(-50px);
+        
+        // }
+
+        // &:nth-child(5) {
+        //     transform: translateZ(2px) scale(0.8) translateY(-240px);
+        // }           
+
+    }
 }

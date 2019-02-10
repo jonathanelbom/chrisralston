@@ -1,46 +1,64 @@
-import React, {Component} from 'react';
+import React, {Component, Fragment} from 'react';
+import classnames from 'classnames';
 import logo from './logo.svg';
 import './App.css';
 
+import Header from './components/Header/Header';
+import AppContext from './context/AppContext';
+import constants from './constants';
 import LandingPage from './components/LandingPage/LandingPage';
-import CaseStudy from './components/CaseStudy/CaseStudy';
-import argo from './store/argo';
-import viggle from './store/viggle';
-import projects from './store/projects';
-
-const caseStudyMap = {
-    '#argo'   : argo,
-    '#viggle' : viggle
-};
+import Agro from './components/Agro/Agro';
 
 const caseStudies = [
-    argo,
-    viggle
+    Agro,
+    Agro,
+    Agro,
+    Agro,
+    Agro
 ];
-
-const MODE_LANDING_PAGE = 0;
-const MODE_CASE_STUDY = 1;
 
 class App extends Component {
 
     constructor(props) {
         super(props)
 
+        this.changeMode = (mode) => {
+            console.log('App > changeMode, mode:', mode);
+            if (mode !== this.state.mode) {
+                this.setState({mode})
+            }
+        };
+    
+        this.changeIndex = (index) => {
+            console.log('App > changeMode, index:', index);
+            if (index !== this.state.index || this.state.mode !== constants.MODE_CASE_STUDY) {
+                this.setState({
+                    index,
+                    mode: constants.MODE_CASE_STUDY
+                });
+            }
+        };
+
+        this.changeDirection = (direction) => {
+            const {index} = this.state;
+            const newIndex = this.getNewIndex(index, direction);
+            if (index !== newIndex) {
+                this.setState({
+                    index: newIndex
+                });
+            }
+        };
+
         this.state = {
-            mode: MODE_LANDING_PAGE,
-            index: 0
+            mode: constants.MODE_CASE_STUDY, // constants.MODE_LANDING_PAGE,
+            index: 0,
+            changeMode: this.changeMode,
+            changeIndex: this.changeIndex,
+            changeDirection: this.changeDirection
         };
 
         window.ralston = window.ralston || {};
         window.ralston.changeDirection = this.changeDirection;
-    }
-
-    changeDirection = (direction) => {
-        const {index} = this.state;
-        const newIndex = this.getNewIndex(index, direction);
-        if (index !== newIndex) {
-            this.setState({index: newIndex});
-        }
     }
 
     getNewIndex(index, dir) {
@@ -55,24 +73,40 @@ class App extends Component {
     }
 
     componentDidUpdate(nextProps, nextState) {
-        const {index} = this.state;
-        if (index !== nextState.index) {
-            document.documentElement.scrollTop = 5000;
-        }
+        // const {index} = this.state;
+        // if (index !== nextState.index) {
+        //     document.documentElement.scrollTop = 5000;
+        // }
     }
 
     render() {
         const {index, mode} = this.state;
-        const caseStudy = caseStudies[index];
+        const CaseStudy = caseStudies[index];
+        const containerClass = classnames('ChrisRalston__content-container', {
+            'ChrisRalston__content-container--landing-page': mode === constants.MODE_LANDING_PAGE,
+            'ChrisRalston__content-container--case-study': mode === constants.MODE_CASE_STUDY
+        })
         return (
-            <div className="App">
-                {mode === MODE_LANDING_PAGE &&
-                    <LandingPage {...projects} />
-                }
-                {mode === MODE_CASE_STUDY &&
-                    <CaseStudy {...caseStudy} />
-                }
-            </div>
+            <AppContext.Provider value={this.state}>
+                <Fragment>
+                    <Header />
+                    {/* <div className={containerClass}> */}
+                        {mode === constants.MODE_LANDING_PAGE &&
+                            <AppContext.Consumer>
+                                {({changeMode, changeIndex}) => (
+                                    <LandingPage
+                                        changeMode={changeMode}
+                                        changeIndex={changeIndex}
+                                    />
+                                )}
+                            </AppContext.Consumer>
+                        }
+                        {mode === constants.MODE_CASE_STUDY &&
+                            <CaseStudy />
+                        }
+                    {/* </div> */}
+                </Fragment>
+            </AppContext.Provider>
         );
     }
 }

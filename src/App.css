@@ -19,44 +19,66 @@
 *.med {
   font-family: 'SailecMediumWeb', sans-serif;
 }
+html {
+  min-height: 100%;
+  background: #fff;
+  color: #171719;
+}
 html,
 body {
-  background: #e3e3e3;
   font-family: 'SailecRegularWeb', sans-serif;
+  font-size: 16px;
 }
-.col-1 {
-  width: 8.33%;
+.ChrisRalston {
+  min-height: 100vh;
 }
-.col-2 {
-  width: 16.66%;
+.ChrisRalston .CaseStudy-container {
+  padding: 100px 32px 80px;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  perspective: 10px;
+  perspective-origin: top center;
+  max-height: 100vh;
+  background-color: #fff;
 }
-.col-3 {
-  width: 25%;
-}
-.col-4 {
-  width: 33.33%;
-}
-.col-5 {
-  width: 41.66%;
-}
-.col-6 {
-  width: 50%;
-}
-.col-7 {
-  width: 58.33%;
-}
-.col-8 {
-  width: 66.66%;
-}
-.col-9 {
-  width: 75%;
-}
-.col-10 {
-  width: 83.33%;
-}
-.col-11 {
-  width: 91.66%;
-}
-.col-12 {
+.ChrisRalston .CaseStudy {
   width: 100%;
+  max-width: 1170px;
+  margin: 0 auto;
+  transform-style: preserve-3d;
+}
+.ChrisRalston .CaseStudy__title-container {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  z-index: 20;
+  pointer-events: none;
+}
+.ChrisRalston .CaseStudy__title-container > * {
+  pointer-events: none;
+}
+.ChrisRalston .CaseStudy__title-wrapper {
+  width: 100%;
+  height: 100%;
+  max-width: 1288px;
+  margin: 0 auto;
+  position: relative;
+}
+.ChrisRalston .CaseStudy__title {
+  font-size: 16px;
+  line-height: 32px;
+  position: absolute;
+  transform: rotate(-90deg);
+  transform-origin: top left;
+  left: 0;
+  bottom: 110px;
+  white-space: nowrap;
+}
+.ChrisRalston .CaseStudy__title--job {
+  color: #AEB5BC;
+}
+.ChrisRalston .block--content {
+  width: 100%;
+  overflow: hidden;
+  margin-bottom: 80px;
 }
