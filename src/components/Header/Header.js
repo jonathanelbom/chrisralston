@@ -39,7 +39,7 @@ class Header extends Component {
     }
 
     getLinkClasses(index) {
-        return classnames('Header__link', 'Header__item', {});
+        return classnames('Header__link', 'Header__item', 'title', {});
     }
 
     render() {
@@ -53,7 +53,7 @@ class Header extends Component {
                         'animationDelay': `${1000}ms`
                     }}
                 >
-                    <div className="Header__logo Header__item">{'Chris Ralston'}</div>
+                    <div className="Header__logo Header__item title">{'Chris Ralston'}</div>
                     <nav className="Header__nav">
                     {
                         links.map((link, index) => (

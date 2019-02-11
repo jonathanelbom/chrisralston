@@ -1,4 +1,22 @@
+@import (reference) '../../shared.less';
+
 .ChrisRalston {
+    .block--content {
+        // width: 100%;
+        .max-width();
+        margin-bottom: 80px;
+    }
+
+    .block--content-full-width {
+        margin-left: -@gutter;
+        margin-right: -@gutter;
+    }
+
+    .block--details {
+        margin-bottom: 160px;
+        margin-top: 100px;
+    }
+
     .block--title {
         max-width: 690px;
 
@@ -15,6 +33,15 @@
         }
     }
 
+    .block--details {
+        .details-block__row  {
+            display: flex;
+            justify-content: space-between;
+            padding: 48px 0;
+            border-bottom: 1px solid #000;
+        }
+    }
+
     .block--hero {
         overflow: visible;
         display: flex;
@@ -23,7 +50,7 @@
         max-height: 770px;
 
         > img {
-             width: auto;
+            width: auto;
             height: 100%;
         }
     }
@@ -32,13 +59,19 @@
         width: 100%;
 
         > img {
-        width: 100%;
-        height: auto;
+            width: 100%;
+            height: auto;
         }
     }
 
-    .block__image--multi {
+    .block--image-multi {
+        position: relative;
+        // width: 100%;
+    }
 
+    .block__image--multi {
+        // position: relative;
+        width: 100%;
     }
 
     .block__image--multi-1,
@@ -48,9 +81,5 @@
         position: absolute;
         top: 0;
         left: 0;
-    }
-
-    .block--image-multi {
-        position: relative;
     }
 }

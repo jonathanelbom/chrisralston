@@ -7,14 +7,16 @@ import Header from './components/Header/Header';
 import AppContext from './context/AppContext';
 import constants from './constants';
 import LandingPage from './components/LandingPage/LandingPage';
+import Project from './components/Project/Project';
 import Agro from './components/Agro/Agro';
+import {agro} from './projects';
 
-const caseStudies = [
-    Agro,
-    Agro,
-    Agro,
-    Agro,
-    Agro
+const projects = [
+    agro,
+    agro,
+    agro,
+    agro,
+    agro
 ];
 
 class App extends Component {
@@ -62,7 +64,7 @@ class App extends Component {
     }
 
     getNewIndex(index, dir) {
-        const l = caseStudies.length;
+        const l = projects.length;
         if (dir === 'next') {
             return index > l - 2 ? 0 : index + 1;
         } else {
@@ -81,7 +83,7 @@ class App extends Component {
 
     render() {
         const {index, mode} = this.state;
-        const CaseStudy = caseStudies[index];
+        // const CaseStudy = caseStudies[index];
         const containerClass = classnames('ChrisRalston__content-container', {
             'ChrisRalston__content-container--landing-page': mode === constants.MODE_LANDING_PAGE,
             'ChrisRalston__content-container--case-study': mode === constants.MODE_CASE_STUDY
@@ -102,7 +104,7 @@ class App extends Component {
                             </AppContext.Consumer>
                         }
                         {mode === constants.MODE_CASE_STUDY &&
-                            <CaseStudy />
+                            <Project project={projects[index]}/>
                         }
                     {/* </div> */}
                 </Fragment>

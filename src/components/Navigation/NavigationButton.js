@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import classnames from 'classnames';
-import './NavigationButton.css';
+import './Navigation.css';
 
 class NavigationButton extends Component {
 
@@ -28,8 +28,8 @@ class NavigationButton extends Component {
     render() {
         const {width, backgroundColor, text, type, state} = this.props;
         // console.log('NavigationButton > render\n\tthis.props:', this.props);
-        const label = `${type === 'prev' ? 'Previous' : 'Next'} project`;
-        const rootClass = classnames('NavigationButton', {
+        const label = type === 'prev' ? 'Previous' : 'Next';
+        const rootClass = classnames('NavigationButton title', {
             'NavigationButton--prev' : type !== 'next',
             'NavigationButton--next' : type === 'next',
             'NavigationButton--under' : state === 'under',

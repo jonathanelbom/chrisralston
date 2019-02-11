@@ -1,76 +1,52 @@
-// @font-face{
-//     font-family:"Sailec W05 Regular";
-//     src:url("Fonts/5472499/cc23f21f-a562-4b85-9e13-658780b066ef.eot?#iefix");
-//     src:url("Fonts/5472499/cc23f21f-a562-4b85-9e13-658780b066ef.eot?#iefix") format("eot"),url("Fonts/5472499/22771bcc-8fbd-411f-b730-9a43197afb95.woff2") format("woff2"),url("Fonts/5472499/0610e07b-93ea-4f1f-b469-1a2a02398b58.woff") format("woff"),url("Fonts/5472499/62fd0cec-2b66-4652-a323-5c996874386f.ttf") format("truetype");
-// }
-//
-// @font-face{
-//     font-family:"Sailec W05 Medium";
-//     src:url("Fonts/5472507/c96b20a7-72a1-40ba-a441-563129bb9cd6.eot?#iefix");
-//     src:url("Fonts/5472507/c96b20a7-72a1-40ba-a441-563129bb9cd6.eot?#iefix") format("eot"),url("Fonts/5472507/a1b501c6-02c3-4270-abed-64bb4b8ce257.woff2") format("woff2"),url("Fonts/5472507/a3f39c3c-0827-44ea-b173-27ac5ba80d83.woff") format("woff"),url("Fonts/5472507/2a213e32-9ed4-4dd5-887b-4f0fe81b511a.ttf") format("truetype");
-// }
-//
-// @font-face{
-//     font-family:"Sailec W05 Bold";
-//     src:url("Fonts/5472515/13469824-539d-4246-850c-0088a2772e0a.eot?#iefix");
-//     src:url("Fonts/5472515/13469824-539d-4246-850c-0088a2772e0a.eot?#iefix") format("eot"),url("Fonts/5472515/edec1a94-e2a6-4e33-ada9-743e2b241fbb.woff2") format("woff2"),url("Fonts/5472515/aa19e7c7-176b-4241-b77b-aeab4fa42f7e.woff") format("woff"),url("Fonts/5472515/f4999595-c4b4-4928-8a49-887524aa1b76.ttf") format("truetype");
-// }
-
-@dark: #171719;
-@gutter: 32px;
+@import (reference) './shared.less';
 
 @font-face {
-  font-family: 'SailecRegularWeb';
-  src: local('SailecRegularWeb'), url(./fonts/SailecRegularWeb.woff) format('woff'), url(./fonts/SailecRegularWeb.woff2) format('woff2');
+    font-family: 'DrukWide-Super-Web';
+    src: url(./fonts/DrukWide-Super-Web.ttf) format('truetype');
 }
 
 @font-face {
-  font-family: 'SailecMediumWeb';
-  src: local('SailecMediumWeb'), url(./fonts/SailecMediumWeb.woff) format('woff'), url(./fonts/SailecMediumWeb.woff2) format('woff2');
+    font-family: 'Graphik-Regular';
+    src: url(./fonts/Graphik-Regular.ttf) format('truetype');
 }
 
-@font-face {
-  font-family: 'SailecBoldWeb';
-  src: local('SailecBoldWeb'), url(./fonts/SailecBoldWeb.woff) format('woff2'), url(./fonts/SailecBoldWeb.woff) format('woff2');
-}
 * {
     box-sizing: border-box;
-    &.bold {
-        font-family: 'SailecBoldWeb', sans-serif;
-    }
-    &.med {
-        font-family: 'SailecMediumWeb', sans-serif;
+    &.title {
+        font-family: 'DrukWide-Super-Web', sans-serif;
     }
 }
 
 html {
     min-height: 100%;
-    background: #fff; // #e3e3e3;
+    background: @white; // #e3e3e3;
     color: @dark;
     
 }
 html, body {
-    font-family: 'SailecRegularWeb', sans-serif;
+    font-family: 'Graphik-Regular', sans-serif;
     font-size: 16px;
 }
 
 .ChrisRalston {
     min-height: 100vh;
 
-    .CaseStudy-container {
-        padding: 100px @gutter 80px;
+    .Project-container {
+        padding: 0 @gutter 0;
         overflow-x: hidden;
         overflow-y: scroll;
-        perspective: 10px;
+        perspective: 30px;
         perspective-origin: top center;
         max-height: 100vh;
-        background-color: #fff;
+        background-color: @white;
     }
 
-    .CaseStudy {
-        width: 100%;
-        max-width: 1170px;
-        margin: 0 auto;
+    .Project {
+        // width: 100%;
+        // max-width: @content-max-width;
+        // margin: 0 auto;
+        // .max-width();
+        padding-top: 120px;
         transform-style: preserve-3d;
 
         &__title-container {
@@ -87,7 +63,7 @@ html, body {
         &__title-wrapper {
             width: 100%;
             height: 100%;
-            max-width: 1288px;
+            max-width: @title-wrapper-max-width;;
             margin: 0 auto;
             position: relative;
         }
@@ -108,24 +84,15 @@ html, body {
         }
     }
 
-    .block--content {
-        width: 100%;
-        overflow: hidden;
-        margin-bottom: 80px;
-        
-        // &:nth-child(2) {
-        //     transform: translateZ(1px) scale(0.9) translateY(-100px);
-        
-        // }
+    .agro__iphone_1_3 {
+        transform: translateZ(8px) scale(.73) translateY(-180px);
+    }
 
-        // &:nth-child(4) {
-        //     transform: translateZ(1px) scale(0.9) translateY(-50px);
-        
-        // }
+    .agro__iphone_2_3 {
+        transform: translateZ(4px) scale(.87) translateY(-40px);
+    }
 
-        // &:nth-child(5) {
-        //     transform: translateZ(2px) scale(0.8) translateY(-240px);
-        // }           
-
+    .agro__iphone_3_3 {
+        transform: translateZ(1px) scale(.91) translateY(-40px);
     }
 }

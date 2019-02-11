@@ -8,7 +8,6 @@ import MultiImageBlock from '../Blocks/MultiImageBlock';
 import HeroImageBlock from '../Blocks/HeroImageBlock';
 
 // styles
-import './Agro.css';
 import '../Blocks/Block.css';
 
 // images
@@ -199,7 +198,7 @@ class Agro extends Component {
                                 case 'title':
                                     return (
                                         <div className={classnames(block.className)} key={`title-block-${block.index}`}>
-                                            <div className="block--title__title">{block.title}</div>
+                                            <div className="block--title__title title">{block.title}</div>
                                             <div className="block--title__body">{block.body}</div>
                                         </div>
                                     );

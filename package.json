@@ -5,6 +5,7 @@
   "homepage": "http://jonnybomb.com/cralston",
   "dependencies": {
     "classnames": "^2.2.5",
+    "lodash.throttle": "^4.1.1",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-scripts": "1.0.17"

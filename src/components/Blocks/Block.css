@@ -1,3 +1,17 @@
+.ChrisRalston .block--content {
+  width: 100%;
+  max-width: 1170px;
+  margin: 0 auto;
+  margin-bottom: 80px;
+}
+.ChrisRalston .block--content-full-width {
+  margin-left: -32px;
+  margin-right: -32px;
+}
+.ChrisRalston .block--details {
+  margin-bottom: 160px;
+  margin-top: 100px;
+}
 .ChrisRalston .block--title {
   max-width: 690px;
 }
@@ -10,6 +24,12 @@
 .ChrisRalston .block--title__body {
   font-size: 16px;
   line-height: 36px;
+}
+.ChrisRalston .block--details .details-block__row {
+  display: flex;
+  justify-content: space-between;
+  padding: 48px 0;
+  border-bottom: 1px solid #000;
 }
 .ChrisRalston .block--hero {
   overflow: visible;
@@ -29,6 +49,12 @@
   width: 100%;
   height: auto;
 }
+.ChrisRalston .block--image-multi {
+  position: relative;
+}
+.ChrisRalston .block__image--multi {
+  width: 100%;
+}
 .ChrisRalston .block__image--multi-1,
 .ChrisRalston .block__image--multi-2,
 .ChrisRalston .block__image--multi-3,
@@ -36,7 +62,4 @@
   position: absolute;
   top: 0;
   left: 0;
-}
-.ChrisRalston .block--image-multi {
-  position: relative;
 }

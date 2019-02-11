@@ -39,8 +39,10 @@ class HeroImageBlock extends Component {
     }
     
     componentWillReceiveProps(nextProps) {
-        const {windowWidth, elemWidth} = this.props;
-        this.updateBlockHeight(nextProps.windowWidth);
+        const {windowWidth} = nextProps;
+        if (this.props.windowWidth !== windowWidth) {
+            this.updateBlockHeight(windowWidth);
+        }
     }
 
     updateBlockHeight(windowWidth) {

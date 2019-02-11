@@ -17,9 +17,13 @@
 }
 .Header__logo {
   flex-grow: 1;
+  text-transform: uppercase;
 }
 .Header__nav {
   display: flex;
+}
+.Header__link {
+  text-transform: uppercase;
 }
 .Header__item {
   padding: 36px;

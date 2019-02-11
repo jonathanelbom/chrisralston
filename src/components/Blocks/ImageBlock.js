@@ -84,11 +84,13 @@ class ImageBlock extends Component {
         const {
             readyState
         } = this.state;
-
+        // if (isMultiImage) {
+        //     console.log()
+        // }
         const imgClassName = classnames('block__image', {
             'block__image--not-loaded': readyState === READY_STATE.NOT_STARTED,
             'block__image--loaded': readyState === READY_STATE.COMPLETE,
-            [`block__image--multi-${index}`]: isMultiImage,
+            [`block__image--multi block__image--multi-${index}`]: isMultiImage,
             [className]: isMultiImage,
             [`block__image--hero`]: isHeroImage
 

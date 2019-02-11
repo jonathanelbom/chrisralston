@@ -1,23 +1,16 @@
 @font-face {
-  font-family: 'SailecRegularWeb';
-  src: local('SailecRegularWeb'), url(fonts/SailecRegularWeb.woff) format('woff'), url(fonts/SailecRegularWeb.woff2) format('woff2');
+  font-family: 'DrukWide-Super-Web';
+  src: url(fonts/DrukWide-Super-Web.ttf) format('truetype');
 }
 @font-face {
-  font-family: 'SailecMediumWeb';
-  src: local('SailecMediumWeb'), url(fonts/SailecMediumWeb.woff) format('woff'), url(fonts/SailecMediumWeb.woff2) format('woff2');
-}
-@font-face {
-  font-family: 'SailecBoldWeb';
-  src: local('SailecBoldWeb'), url(fonts/SailecBoldWeb.woff) format('woff2'), url(fonts/SailecBoldWeb.woff) format('woff2');
+  font-family: 'Graphik-Regular';
+  src: url(fonts/Graphik-Regular.ttf) format('truetype');
 }
 * {
   box-sizing: border-box;
 }
-*.bold {
-  font-family: 'SailecBoldWeb', sans-serif;
-}
-*.med {
-  font-family: 'SailecMediumWeb', sans-serif;
+*.title {
+  font-family: 'DrukWide-Super-Web', sans-serif;
 }
 html {
   min-height: 100%;
@@ -26,45 +19,43 @@ html {
 }
 html,
 body {
-  font-family: 'SailecRegularWeb', sans-serif;
+  font-family: 'Graphik-Regular', sans-serif;
   font-size: 16px;
 }
 .ChrisRalston {
   min-height: 100vh;
 }
-.ChrisRalston .CaseStudy-container {
-  padding: 100px 32px 80px;
+.ChrisRalston .Project-container {
+  padding: 0 32px 0;
   overflow-x: hidden;
   overflow-y: scroll;
-  perspective: 10px;
+  perspective: 30px;
   perspective-origin: top center;
   max-height: 100vh;
   background-color: #fff;
 }
-.ChrisRalston .CaseStudy {
-  width: 100%;
-  max-width: 1170px;
-  margin: 0 auto;
+.ChrisRalston .Project {
+  padding-top: 120px;
   transform-style: preserve-3d;
 }
-.ChrisRalston .CaseStudy__title-container {
+.ChrisRalston .Project__title-container {
   width: 100vw;
   height: 100vh;
   position: fixed;
   z-index: 20;
   pointer-events: none;
 }
-.ChrisRalston .CaseStudy__title-container > * {
+.ChrisRalston .Project__title-container > * {
   pointer-events: none;
 }
-.ChrisRalston .CaseStudy__title-wrapper {
+.ChrisRalston .Project__title-wrapper {
   width: 100%;
   height: 100%;
   max-width: 1288px;
   margin: 0 auto;
   position: relative;
 }
-.ChrisRalston .CaseStudy__title {
+.ChrisRalston .Project__title {
   font-size: 16px;
   line-height: 32px;
   position: absolute;
@@ -74,11 +65,15 @@ body {
   bottom: 110px;
   white-space: nowrap;
 }
-.ChrisRalston .CaseStudy__title--job {
+.ChrisRalston .Project__title--job {
   color: #AEB5BC;
 }
-.ChrisRalston .block--content {
-  width: 100%;
-  overflow: hidden;
-  margin-bottom: 80px;
+.ChrisRalston .agro__iphone_1_3 {
+  transform: translateZ(8px) scale(0.73) translateY(-180px);
+}
+.ChrisRalston .agro__iphone_2_3 {
+  transform: translateZ(4px) scale(0.87) translateY(-40px);
+}
+.ChrisRalston .agro__iphone_3_3 {
+  transform: translateZ(1px) scale(0.91) translateY(-40px);
 }

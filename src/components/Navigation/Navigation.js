@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import classnames from 'classnames';
 
-import NavigationButton from '../Navigation/NavigationButton';
+import NavigationButton from './NavigationButton';
 
-import './Module.css';
+import './Navigation.css';
 
-class NavigationModule extends Component {
+class Navigation extends Component {
 
     constructor(props) {
         super(props);
@@ -25,24 +25,25 @@ class NavigationModule extends Component {
     render() {
         const {width, backgroundColor} = this.props;
         const {next, prev} = this.state;
-        const rootClass = `Module NavigationModule col-${width}`;
         const nextState = prev === 'over' ? 'under' : next;
         const prevState = next === 'over' ? 'under' : prev;
         return (
-            <div className={rootClass}>
-                <NavigationButton
-                    state={prevState}
-                    type="prev"
-                    onOverOrOut={this.onOverOrOut}
-                />
-                <NavigationButton
-                    state={nextState}
-                    type="next"
-                    onOverOrOut={this.onOverOrOut}
-                />
+            <div className="Navigation block--content-full-width">
+                <div className="Navigation__wrapper">
+                    <NavigationButton
+                        state={prevState}
+                        type="prev"
+                        onOverOrOut={this.onOverOrOut}
+                    />
+                    <NavigationButton
+                        state={nextState}
+                        type="next"
+                        onOverOrOut={this.onOverOrOut}
+                    />
+                </div>
             </div>
         );
     }
 }
 
-export default NavigationModule;
+export default Navigation;
