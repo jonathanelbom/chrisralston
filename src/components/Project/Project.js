@@ -7,6 +7,8 @@ import constants from '../../constants';
 import ImageBlock from '../Blocks/ImageBlock';
 import MultiImageBlock from '../Blocks/MultiImageBlock';
 import HeroImageBlock from '../Blocks/HeroImageBlock';
+import DetailsBlock from '../Blocks/DetailsBlock';
+import TitleBlock from '../Blocks/TitleBlock';
 import Navigation from '../Navigation/Navigation';
 
 // styles
@@ -23,10 +25,13 @@ class Project extends Component {
                 ...block,
                 index: index,
                 id: util.createId(),
-                className: block.className || ''
+                className: block.className || '',
+                inView: true,
+                domRef: undefined
             };
         });
-        // push navigation modu'e
+
+        // push navigation module
         this.project.blocks.push({
             type: 'navigation',
             name: 'navigation',
@@ -36,6 +41,7 @@ class Project extends Component {
 
         this.state = {
             windowWidth: 0,
+            windowHeight: 0,
             marginBottom: 80,
             scrollTop: 0 
         };
@@ -54,10 +60,22 @@ class Project extends Component {
         }
     }
 
+    componentDidUpdate() {
+        // this.childRefs.forEach((ref, index) => {
+        //     console.log('index:', index, ', ref:', ref);
+        // });
+
+        // this.project.blocks.forEach((block, index) => {
+        //     console.log('name:', block.name, ', block.domRef:', block.domRef);
+        // });
+    }
+
     onResize = () => {
         const windowWidth = util.getWidth(document.documentElement);
+        const windowHeight = util.getHeight(document.documentElement);
         const changed = [
-            windowWidth !== this.state.windowWidth
+            windowWidth !== this.state.windowWidth,
+            windowHeight !== this.state.windowHeight
         ].some((condition) => (!!condition));
 
         if (changed) {
@@ -68,10 +86,11 @@ class Project extends Component {
                 minHeight: constants.BLOCK_MARGIN_MIN,
                 maxHeight: constants.BLOCK_MARGIN_MAX,
             });
-            const changes = {windowWidth}
+            const changes = {windowWidth, windowHeight};
             if (marginBottom !==  this.state.marginBottom) {
                 changes.marginBottom = marginBottom;
             }
+            this.updateInView(windowHeight);
             this.setState(changes);            
         }
     }
@@ -80,37 +99,42 @@ class Project extends Component {
     onScroll = () => {
         const scrollTop = Math.round(this.scrollElem.current.scrollTop);
         if (this.state.scrollTop !== scrollTop) {
+            this.updateInView();
             this.setState({
                 scrollTop
             });
         }
     }
-    onScrollThrottled = throttle(this.onScroll, 200);
-    
-    getClassnameFromType(type) {
-        switch (type) {
-            case 'image':
-                return 'block--image block--content';
-            case 'image-hero':
-                return 'block--hero block--content';
-            case 'title':
-                return 'block--title block--content';
-            case 'image-multi':
-                return 'block--image-multi block--content';
-            case 'image-multi-in-series':
-                return 'block__image--multi-in-series';
-            case 'details':
-                return 'block--details block--content';
-        }
+    onScrollThrottled = throttle(this.onScroll, 100);
+
+    updateInView(windowHeight) {
+        // console.log('\n\nupdateInView');
+        this.project.blocks = this.project.blocks.map((block, index) => {
+            if (block.domRef) {
+                const {rect, inView, percentageScrolled} = util.isInView({
+                    domRef: block.domRef,
+                    windowHeight: windowHeight || this.state.windowHeight
+                });
+                if (block.name === 'hero') {
+                    // console.log(block.name, '> rect.bottom:', rect.bottom, ', inView: ', inView, ', percentageScrolled:', percentageScrolled);
+                    //console.log(block.name, '> pctScrolled:', percentageScrolled, ' rect.bottom:', rect.bottom, ', rect.height:', rect.height);
+                }
+                return {...block, inView, rect, percentageScrolled};
+            }
+            return block;
+        });
     }
+
+    getSetRef = (index) => ((ref) => {
+        this.project.blocks[index].domRef = ref;
+    });
+
     render() {
         const {
             windowWidth,
+            windowHeight,
             marginBottom,
             scrollTop
-            // windowHeight,
-            // elemWidth,
-            // elemHeight
         } = this.state;
 
         return (
@@ -125,58 +149,52 @@ class Project extends Component {
                 </div>
                 <div className="Project-container" onScroll={this.onScrollThrottled} ref={this.scrollElem}>
                     <div className="Project">
-                        {this.project.blocks.map((block) => {
-                            block.style = {...(block.style || {}), marginBottom: `${block.type === 'image-hero' ? this.state.marginBottom * 2 : this.state.marginBottom}px`}
+                        {this.project.blocks.map((block, index) => {
+                            block.style = {...(block.style || {}), marginBottom: `${block.type === 'image-hero' ? marginBottom * 2 : marginBottom}px`}
+                            block.windowWidth = windowWidth;
+                            block.windowHeight = windowHeight;
+                            block.scrollTop = scrollTop;
                             switch (block.type) {
                                 case 'title':
                                     return (
-                                        <div className={this.getClassnameFromType(block.type)} key={`title-block-${block.index}`}>
-                                            <div className="block--title__title title">{block.title}</div>
-                                            <div className="block--title__body">{block.body}</div>
-                                        </div>
-                                    );
+                                        <TitleBlock
+                                            setRef={this.getSetRef(block.index)}
+                                            key={`title-block-${block.index}`}
+                                            {...block}
+                                        />
+                                    )
                                 case 'details':
                                     return (
-                                        <div className={this.getClassnameFromType(block.type)} key={`details-block-${block.index}`}>
-                                            <div className="details-block__row details-block__role">
-                                                <span className="details-block__label title">{'ROLE'}</span>
-                                                <span className="details-block_value">{block.role}</span>
-                                            </div>
-                                            <div className="details-block__row block--details__client">
-                                                <span className="details-block__label title">{'CLIENT'}</span>
-                                                <span className="details-block_value">{block.client}</span>
-                                            </div>
-                                            <div className="details-block__row block--details__year">
-                                                <span className="details-block__label title">{'YEAR'}</span>
-                                                <span className="details-block_value">{block.year}</span>
-                                            </div>
-                                        </div>
-                                    );
+                                        <DetailsBlock
+                                            setRef={this.getSetRef(block.index)}
+                                            key={`details-block-${block.index}`}
+                                            {...block}
+                                        />
+                                    )
                                 case 'image':
                                     return (
                                         <ImageBlock
+                                            setRef={this.getSetRef(block.index)}
                                             key={`image-block-${block.index}`}
                                             {...block}
-                                            className={this.getClassnameFromType(block.type)}
                                         />
                                     );
                                 case 'image-hero':
                                     return (
                                         <HeroImageBlock
+                                            setRef={this.getSetRef(block.index)}
                                             key={`image-block-${block.index}`}
-                                            windowWidth={windowWidth}
                                             {...block}
-                                            className={this.getClassnameFromType(block.type)}
                                         />
                                     );
                                 case 'image-multi':
                                     return (
                                         <MultiImageBlock
+                                            setRef={this.getSetRef(block.index)}    
                                             key={`multi-image-block-${block.index}`}
                                             scrollTop={scrollTop}
                                             windowWidth={windowWidth}
                                             {...block}
-                                            className={this.getClassnameFromType(block.type)}
                                         />
                                     );
                                 case 'navigation':

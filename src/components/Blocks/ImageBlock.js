@@ -17,30 +17,104 @@ class ImageBlock extends Component {
         onImageLoad: PropTypes.func,
         onImageError: PropTypes.func,
         isMultiImage: PropTypes.bool,
-        isHeroImage: PropTypes.bool
+        isHeroImage: PropTypes.bool,
+        style: PropTypes.object
     }
 
     static defaultProps = {
         isMultiImage: false,
         isHeroImage: false,
         onImageLoad: () => {},
-        onImageError: () => {}
+        onImageError: () => {},
+        className: '',
+        style: {},
+        src: ''
     }
 
     constructor(props) {
         super(props);
-        
-        this.img = React.createRef();
+
         this.state = {
             readyState: READY_STATE.NOT_STARTED,
             naturalHeight: 0,
             naturalWidth: 0,
             aspectRatio: 0,
             width: 0,
-            height: 0
+            height: 0,
+            rect: {top: 0, left: 0, width: 0, height: 0}
         };
+
+        this.img = React.createRef();
+        this.elem = React.createRef();
+        if (this.props.setRef) {
+            this.props.setRef(this.elem);
+        }
     }
     
+    componentDidMount() {
+        // if (this.elem.current) {
+        //     const rect = this.elem.current.getBoundingClientRect();
+        //     this.setState({rect});
+        // }
+    }
+
+    componentWillReceiveProps(nextProps) {
+        // const changed = [
+        //     this.props.windowHeight !== nextProps.windowHeight,
+        //     this.props.windowWidth !== nextProps.windowWidth,
+        //     this.props.scrollTop !== nextProps.scrollTop
+        // ].some((condition) => (!!condition))
+        
+        // const changes = {}
+        // let rect = this.state.rect;
+        // if (this.props.windowHeight !== nextProps.windowHeight || this.props.windowWidth !== nextProps.windowWidth) {
+        //     rect = this.elem.current.getBoundingClientRect();
+        //     changes.rect = rect;
+        // }
+        // if (this.props.scrollTop !== nextProps.scrollTop) {
+        //     const {top, left, height, width} = rect;
+        //     const inView = (top < 0 && height + top > 0) || 
+        // }
+        // if (Object.keys(changes).length > 0) {
+        //     this.setState(changes);
+        // }
+    }
+
+    // componentDidUpdate(prevProps) {
+    //     console.log('componentDidUpdate');
+    //     const {scrollTop, windowWidth, windowHeight} = this.props;
+    //     const changes = {}
+    //     let rect = this.state.rect;
+    //     const changed = [
+    //         windowHeight !== prevProps.windowHeight,
+    //         windowWidth !== prevProps.windowWidth,
+    //         scrollTop !== prevProps.scrollTop
+    //     ].some((condition) => (!!condition));
+    //     if (changed) {
+    //         rect = this.elem.current.getBoundingClientRect();
+    //     }
+    //     if (scrollTop !== prevProps.scrollTop) {
+    //         const {top, left, height, width} = rect;
+    //         const topAdj = top - scrollTop;
+    //         const thresh = -200;
+    //         console.log('\twindowHeight:', windowHeight, '\n\tscrollTop:', scrollTop, '\n\trect:', rect);
+    //         const inView = (top < windowHeight + thresh && top + height + thresh > 0)
+    //         console.log('top:', top, ', height:', height, 'inView:', inView);
+    //         if (inView !== this.state.inView) {
+    //             this.setState({
+    //                 inView
+    //             });
+    //         }
+    //     }
+    //     if (Object.keys(changes).length > 0) {
+    //         this.setState(changes);
+    //     }
+    // }
+
+    // componentDidUpdate() {
+    //     console.log('ImageBlock > this.elem:', this.elem);
+    // }
+
     onImageLoad = (e) => {
         const {
             naturalWidth,
@@ -78,30 +152,36 @@ class ImageBlock extends Component {
             className,
             isMultiImage,
             isHeroImage,
-            index
+            inView,
+            name,
+            style,
+            rect
         } = this.props;
 
         const {
             readyState
         } = this.state;
-        // if (isMultiImage) {
-        //     console.log()
-        // }
+        
         const imgClassName = classnames('block__image', {
             'block__image--not-loaded': readyState === READY_STATE.NOT_STARTED,
             'block__image--loaded': readyState === READY_STATE.COMPLETE,
-            [`block__image--multi block__image--multi-${index}`]: isMultiImage,
-            [className]: isMultiImage,
-            [`block__image--hero`]: isHeroImage
-
+            [className]: isMultiImage
         });
 
-        const style = this.props.style || {};
+        const rootClasses = classnames('block--image block--content', {
+            [className]: !isMultiImage
+        });
+
+        // if (inView) {
+        //     console.log('rect:', rect);
+        // }
+
         if (!isMultiImage && !isHeroImage) {
             return (
                 <div
-                    className={className}
+                    className={rootClasses}
                     style={style}
+                    ref={this.elem}
                 >
                     <img
                         ref={this.img}
@@ -122,6 +202,7 @@ class ImageBlock extends Component {
                 onLoad={this.onImageLoad}
                 onError={this.onImageError}
                 alt=""
+                style={style}
             />
         );
     }

@@ -13,14 +13,20 @@ class HeroImageBlock extends Component {
     static propTypes = {
         id: PropTypes.string.isRequired,
         index: PropTypes.number,
-        images: PropTypes.array,
         name: PropTypes.string,
         className: PropTypes.string,
+        src: PropTypes.string,
+        style: PropTypes.object,
         windowWidth: PropTypes.number,
-        elemWidth: PropTypes.number
+        inView: PropTypes.bool
     }
 
     static defaultProps = {
+        className: '',
+        style: {},
+        src: '',
+        windowWidth: 0,
+        inView: true
     }
 
     constructor(props) {
@@ -36,6 +42,11 @@ class HeroImageBlock extends Component {
                 img: undefined
             }
         };
+
+        this.elem = React.createRef();
+        if (this.props.setRef) {
+            this.props.setRef(this.elem);
+        }
     }
     
     componentWillReceiveProps(nextProps) {
@@ -79,31 +90,31 @@ class HeroImageBlock extends Component {
         const {
             src,
             className,
-            image,
-            containerWidth
+            style,
+            name,
+            inView
         } = this.props;
 
         const {
-            readyState,
             blockHeight
         } = this.state;
 
-        const imgClassName = classnames('block__image', {
-            'block__image--not-loaded': readyState === READY_STATE.NOT_STARTED,
-            'block__image--loaded': readyState === READY_STATE.COMPLETE,
-        });
+        const rootClasses = classnames('block--hero block--content', className);
 
-        let style = this.props.style || {};
-        style = {...style, height: `${blockHeight}px`}
         return (
             <div
-                className={className}
-                style={style}
+                className={rootClasses}
+                style={{
+                    ...style, height: `${blockHeight}px`
+                }}
+                ref={this.elem}
             >
                 <ImageBlock
                     index={0}
                     src={src}
-                    containerWidth={containerWidth}
+                    // style={{
+                    //     transform: `translateX(${(1 - this.props.percentInView) * 200}px)`
+                    // }}
                     onImageLoad={this.onImageLoad}
                     onImageError={this.onImageError}
                     isHeroImage
@@ -114,3 +125,4 @@ class HeroImageBlock extends Component {
 }
 
 export default HeroImageBlock;
+// export default React.forwardRef((props, ref) => <HeroImageBlock forwardedRef={ref} {...props}/>);

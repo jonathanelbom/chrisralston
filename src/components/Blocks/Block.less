@@ -56,7 +56,34 @@
     }
 
     .block--image {
+        // opacity: 0;
         width: 100%;
+        transition: opacity 1500ms ease;
+        position: relative;
+        
+        &::after {
+            content: '';
+            // position: absolute;
+            // top: 0;
+            // left: 0;
+            // right: 0;
+            // bottom: 0;
+            // transition: left 100ms ease;
+            // background-color: #fff;
+        }
+
+        // > img {
+        //     transform: translateX(300px);
+        //     transition: transform 1500ms ease;
+        // }
+
+        // &.inView {
+        //     opacity: 1;
+            
+        //     > img {
+        //         transform: none;
+        //     }
+        // }
 
         > img {
             width: 100%;

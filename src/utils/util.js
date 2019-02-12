@@ -51,6 +51,30 @@ const util = {
             return minHeight
         }
         return minHeight + (maxHeight - minHeight) * ((width - minWidth) / (maxWidth - minWidth));
+    },
+
+    isInView({domRef, scrollTop, windowHeight, threshold = 0}) {
+        const rect = domRef.current.getBoundingClientRect();
+        const {top, height, bottom} = rect;
+        const inView = (top < windowHeight + threshold && top + height + threshold > 0);
+        let percentageScrolled = 0;
+        if (inView) {
+            percentageScrolled = 1 - (bottom / (windowHeight + height))
+        }
+        return {
+            rect,
+            inView,
+            percentageScrolled
+        };
+    },
+
+    percentInView({domRef, scrollTop, windowHeight, threshold = 0}) {
+        const rect = domRef.current.getBoundingClientRect();
+        const {top, left, height, width} = rect;
+        return {
+            rect: rect,
+            inView: (top < windowHeight + threshold && top + height + threshold > 0)
+        }
     }
 };
 

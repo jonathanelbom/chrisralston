@@ -16,10 +16,13 @@ class MultiImageBlock extends Component {
         images: PropTypes.array,
         name: PropTypes.string,
         className: PropTypes.string,
-        containerWidth: PropTypes.number
+        style: PropTypes.object
     }
 
     static defaultProps = {
+        className: '',
+        style: {},
+        images: []
     }
 
     constructor(props) {
@@ -29,10 +32,11 @@ class MultiImageBlock extends Component {
             images: [...this.props.images],
             aspectRatio: 0
         };
-    }
-    
-    componentDidMount() {
-        console.log('MultiImageBlock > componentDidMount');
+
+        this.elem = React.createRef();
+        if (this.props.setRef) {
+            this.props.setRef(this.elem);
+        }
     }
 
     onImageLoad = (imageData) => {
@@ -57,40 +61,26 @@ class MultiImageBlock extends Component {
 
     render() {
         const {
-            src,
             className,
             images,
-            blockHeight,
-            windowWidth
+            style
         } = this.props;
 
-        const {
-            readyState
-        } = this.state;
-
-        // const imgClassName = classnames('block__image block__image--multi', {
-        //     'block__image--not-loaded': readyState === READY_STATE.NOT_STARTED,
-        //     'block__image--loaded': readyState === READY_STATE.COMPLETE,
-        // });
-        // const imgStyles = {
-        //     width: `${windowWidth}`
-        // }
-        let style = this.props.style || {};
+        const rootClasses = classnames('block--image-multi block--content', className);
         
         return (
             <div
-                className={className}
+                className={rootClasses}
                 style={style}
+                ref={this.elem}
             >
                 {images.map((image, index) => {
-                    console.log('image.className:', image.className);
-                    // image.className = classnames(image.className, {
-                    //     'block__image--multi': image.className.indexOf
-                    // });
+                    const imgClasses = classnames(`block__image--multi block__image--multi-${index}`, image.className);
                     return (
                         <ImageBlock
                             key={`image-in-multi-image-${index}`}
                             {...image}
+                            className={imgClasses}
                             isMultiImage
                             index={index}
                             onImageLoad={this.onImageLoad}
@@ -104,3 +94,4 @@ class MultiImageBlock extends Component {
 }
 
 export default MultiImageBlock;
+// export default React.forwardRef((props, ref) => <MultiImageBlock forwardedRef={ref} {...props}/>);
