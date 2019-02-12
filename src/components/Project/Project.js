@@ -9,6 +9,7 @@ import MultiImageBlock from '../Blocks/MultiImageBlock';
 import HeroImageBlock from '../Blocks/HeroImageBlock';
 import DetailsBlock from '../Blocks/DetailsBlock';
 import TitleBlock from '../Blocks/TitleBlock';
+import VideoBlock from '../Blocks/VideoBlock';
 import Navigation from '../Navigation/Navigation';
 
 // styles
@@ -117,7 +118,7 @@ class Project extends Component {
                 });
                 if (block.name === 'hero') {
                     // console.log(block.name, '> rect.bottom:', rect.bottom, ', inView: ', inView, ', percentageScrolled:', percentageScrolled);
-                    //console.log(block.name, '> pctScrolled:', percentageScrolled, ' rect.bottom:', rect.bottom, ', rect.height:', rect.height);
+                    // console.log(block.name, '> pctScrolled:', percentageScrolled, ' rect.bottom:', rect.bottom, ', rect.height:', rect.height);
                 }
                 return {...block, inView, rect, percentageScrolled};
             }
@@ -176,6 +177,14 @@ class Project extends Component {
                                         <ImageBlock
                                             setRef={this.getSetRef(block.index)}
                                             key={`image-block-${block.index}`}
+                                            {...block}
+                                        />
+                                    );
+                                case 'video':
+                                    return (
+                                        <VideoBlock
+                                            setRef={this.getSetRef(block.index)}
+                                            key={`video-block-${block.index}`}
                                             {...block}
                                         />
                                     );

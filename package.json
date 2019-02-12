@@ -4,11 +4,13 @@
   "private": true,
   "homepage": "http://jonnybomb.com/cralston",
   "dependencies": {
+    "@u-wave/react-youtube": "^0.6.0",
     "classnames": "^2.2.5",
     "lodash.throttle": "^4.1.1",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
-    "react-scripts": "1.0.17"
+    "react-scripts": "1.0.17",
+    "react-youtube": "^7.9.0"
   },
   "scripts": {
     "start": "npm run build-css && run-p -ncr watch-css start-js",

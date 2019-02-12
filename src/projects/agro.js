@@ -14,6 +14,12 @@ const agro = {
     title: 'Agro Energy',
     blocks: [
         {
+            type: 'image-hero',
+            className: '',
+            src: hero,
+            name: 'hero'
+        },
+        {
             type: 'title',
             className: '',
             title: 'AGRO ENERGY',
@@ -27,10 +33,11 @@ const agro = {
             name: 'wireframes' 
         },
         {
-            type: 'image-hero',
+            type: 'video',
             className: '',
-            src: hero,
-            name: 'hero'
+            name: 'grid',
+            videoId: 'dlaDXbDyuys',
+            aspectRatio: 1.778
         },
         {
             type: 'image',

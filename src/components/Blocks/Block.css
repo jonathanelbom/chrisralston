@@ -54,6 +54,34 @@
   width: 100%;
   height: auto;
 }
+.ChrisRalston .block--video {
+  position: relative;
+  pointer-events: none;
+  overflow: hidden;
+}
+.ChrisRalston .block--video::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(255, 255, 255, 0);
+}
+.ChrisRalston .block--video .block__image--video-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  opacity: 1;
+  transition: opacity 100ms linear;
+}
+.ChrisRalston .block--video .block__image--video-overlay.out {
+  opacity: 0;
+  transition: opacity 2000ms linear 500ms;
+}
 .ChrisRalston .block--image-multi {
   position: relative;
 }
