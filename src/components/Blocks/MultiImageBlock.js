@@ -30,7 +30,8 @@ class MultiImageBlock extends Component {
         
         this.state = {
             images: [...this.props.images],
-            aspectRatio: 0
+            aspectRatio: 0,
+            loaded: false
         };
 
         this.elem = React.createRef();
@@ -40,14 +41,19 @@ class MultiImageBlock extends Component {
     }
 
     onImageLoad = (imageData) => {
+        const {index, name} = this.props;
         const images = [...this.state.images];
         const firstLoad = this.state.aspectRatio === 0;
         imageData.readyState = READY_STATE.COMPLETE;
         images[imageData.index] = imageData;
         this.setState({
             images,
-            aspectRatio: imageData.aspectRatio
+            aspectRatio: imageData.aspectRatio,
+            loaded: true
         });
+        if (!this.state.loaded) {
+            this.props.onImageLoad({index, name})
+        }
     }
 
     onImageError = (imageData) => {

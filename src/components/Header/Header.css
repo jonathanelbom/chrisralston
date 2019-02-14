@@ -6,6 +6,7 @@
   z-index: 10;
   mix-blend-mode: difference;
   pointer-events: none;
+  visibility: hidden;
 }
 .Header {
   padding: 64px 0 0;
