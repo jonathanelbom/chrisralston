@@ -41,7 +41,7 @@ class VideoBlock extends Component {
         this.state = {
             iframeLoaded: false,
             videoPlaying: false,
-            playerState: -1
+            playerState: -2
         }
 
         this.elem = React.createRef();
@@ -179,18 +179,19 @@ class VideoBlock extends Component {
                     }}
                     ref={this.elem}
                 >
-                    <YouTube
-                        className={''}
-                        videoId={videoId}
-                        opts={opts}
-                        onReady={this.onIframeLoad}
-                        onStateChange={this.onStateChange}
-                    />
-                    <img
-                        className={imgClasses}
-                        src={`https://i.ytimg.com/vi_webp/${videoId}/maxresdefault.webp`}
-                    />
-                    }
+                    {/*    
+                        <YouTube
+                            className={''}
+                            videoId={videoId}
+                            opts={opts}
+                            onReady={this.onIframeLoad}
+                            onStateChange={this.onStateChange}
+                        />
+                        <img
+                            className={imgClasses}
+                            src={`https://i.ytimg.com/vi_webp/${videoId}/maxresdefault.webp`}
+                        />
+                    */}
                 </div>
             );
         }

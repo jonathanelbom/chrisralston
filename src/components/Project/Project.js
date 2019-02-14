@@ -91,7 +91,7 @@ class Project extends Component {
             if (marginBottom !==  this.state.marginBottom) {
                 changes.marginBottom = marginBottom;
             }
-            this.updateInView(windowHeight);
+            this.updateInView(windowHeight, true);
             this.setState(changes);            
         }
     }
@@ -106,9 +106,9 @@ class Project extends Component {
             });
         }
     }
-    onScrollThrottled = throttle(this.onScroll, 100);
+    onScrollThrottled = throttle(this.onScroll, 40);
 
-    updateInView(windowHeight) {
+    updateInView(windowHeight, resize) {
         // console.log('\n\nupdateInView');
         this.project.blocks = this.project.blocks.map((block, index) => {
             if (block.domRef) {
@@ -116,6 +116,7 @@ class Project extends Component {
                     domRef: block.domRef,
                     windowHeight: windowHeight || this.state.windowHeight
                 });
+
                 if (block.name === 'hero') {
                     // console.log(block.name, '> rect.bottom:', rect.bottom, ', inView: ', inView, ', percentageScrolled:', percentageScrolled);
                     // console.log(block.name, '> pctScrolled:', percentageScrolled, ' rect.bottom:', rect.bottom, ', rect.height:', rect.height);

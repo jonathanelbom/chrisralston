@@ -53,8 +53,8 @@ const util = {
         return minHeight + (maxHeight - minHeight) * ((width - minWidth) / (maxWidth - minWidth));
     },
 
-    isInView({domRef, scrollTop, windowHeight, threshold = 0}) {
-        const rect = domRef.current.getBoundingClientRect();
+    isInView({domRef, scrollTop, windowHeight, rect, threshold = 0}) {
+        rect = rect || domRef.current.getBoundingClientRect();
         const {top, height, bottom} = rect;
         const inView = (top < windowHeight + threshold && top + height + threshold > 0);
         let percentageScrolled = 0;
@@ -74,6 +74,23 @@ const util = {
         return {
             rect: rect,
             inView: (top < windowHeight + threshold && top + height + threshold > 0)
+        }
+    },
+
+    getScrollPctC(pct) {
+        if (pct < .5) {
+            return 1 - (pct / .5);
+        } else {
+            return 1 - ((1 - pct) / .5);
+        }
+    },
+
+    getScrollPctCWN(pct) {
+        return (pct - .5) * 2;
+        if (pct < .5) {
+            return 1 - (pct / .5);
+        } else {
+            return 1 - ((1 - pct) / .5);
         }
     }
 };

@@ -49,6 +49,8 @@ class ImageBlock extends Component {
         if (this.props.setRef) {
             this.props.setRef(this.elem);
         }
+
+        // console.log('this.props.scrollFunc:', this.props.scrollFunc);
     }
     
     componentDidMount() {
@@ -155,11 +157,18 @@ class ImageBlock extends Component {
             inView,
             name,
             style,
-            rect
+            rect,
+            percentageScrolled,
+            imageScrollStyle
         } = this.props;
 
+        // if (name === 'desktop') {
+        //     console.log('this.props:', this.props);
+        // }
+
         const {
-            readyState
+            readyState,
+            aspectRatio
         } = this.state;
         
         const imgClassName = classnames('block__image', {
@@ -169,21 +178,29 @@ class ImageBlock extends Component {
         });
 
         const rootClasses = classnames('block--image block--content', {
-            [className]: !isMultiImage
+            [className]: !isMultiImage,
+            'block--in-view': inView
         });
 
-        // if (inView) {
-        //     console.log('rect:', rect);
-        // }
+        let imgStyle = {};
+        if (imageScrollStyle && inView) {
+            imgStyle = imageScrollStyle(percentageScrolled)
+            // console.log('percentageScrolled:', percentageScrolled, ',imgStyle:', imgStyle);
+        }
 
+        let updatedStyle = {...style};
+        if (aspectRatio > 0 && rect) {
+            updatedStyle.height = `${rect.width / aspectRatio}px`;
+        }
         if (!isMultiImage && !isHeroImage) {
             return (
                 <div
                     className={rootClasses}
-                    style={style}
+                    style={updatedStyle}
                     ref={this.elem}
                 >
                     <img
+                        style={imgStyle}
                         ref={this.img}
                         className={imgClassName}
                         src={src}

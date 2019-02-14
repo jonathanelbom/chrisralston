@@ -10,6 +10,8 @@ import iphone_1_3 from '../img/argo/iphone-black-left.png';
 import iphone_2_3 from '../img/argo/iphone-black-center.png';
 import iphone_3_3 from '../img/argo/iphone-black-right.png';
 
+import util from '../utils/util';
+
 const agro = {
     title: 'Agro Energy',
     blocks: [
@@ -17,7 +19,7 @@ const agro = {
             type: 'image-hero',
             className: '',
             src: hero,
-            name: 'hero'
+            name: 'hero',
         },
         {
             type: 'title',
@@ -28,29 +30,39 @@ const agro = {
         },
         {
             type: 'image',
-            className: '',
+            className: 'agro__wireframes',
             src: wireframes,
-            name: 'wireframes' 
-        },
-        {
-            type: 'video',
-            className: '',
-            name: 'grid',
-            videoId: 'dlaDXbDyuys',
-            aspectRatio: 1.778
+            name: 'wireframes',
+            // imageScrollStyle: (pct) => {
+            //     return {
+            //         transform: `translateY(${40 + util.getScrollPctCWN(pct) * 140}px)`       
+            //     };
+            // }
         },
         {
             type: 'image',
-            className: '',
+            className: 'agro__desktop',
             src: desktop,
             name: 'desktop',
-            style: {'backgroundColor': '#171719', 'paddingTop': '100px'}
+            style: {'backgroundColor': '#171719', 'paddingTop': '100px'},
+            // imageScrollStyle: (pct) => {
+            //     const pctCWN = 1 - util.getScrollPctCWN(pct);
+            //     return {
+            //         transform: `translateY(${10 + (60 * pctCWN)}px)`
+            //     };
+            // }
         },
         {
             type: 'image',
-            className: '',
+            className: 'agro__handphone',
             src: handPhone,
-            name: 'handPhone'
+            name: 'handPhone',
+            // imageScrollStyle: (pct) => {
+            //     const pctCWN = 1 - util.getScrollPctCWN(pct);
+            //     return {
+            //         transform: `translateY(${10 + (60 * pctCWN)}px)`
+            //     };
+            // }
         },
         {
             type: 'image-multi',
@@ -98,6 +110,13 @@ const agro = {
             className: '',
             src: watches,
             name: 'watches'
+        },
+        {
+            type: 'video',
+            className: '',
+            name: 'grid',
+            videoId: 'dlaDXbDyuys',
+            aspectRatio: 1.778
         },
         {
             type: 'details',
