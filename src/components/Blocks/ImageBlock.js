@@ -131,10 +131,7 @@ class ImageBlock extends Component {
         });
         this.props.onImageLoad({
             index: this.props.index,
-            naturalWidth,
-            naturalHeight,
-            aspectRatio,
-            img: this.img
+            name: this.props.name
         });
     }
 

@@ -4,17 +4,6 @@
   margin: 0 auto;
   margin-bottom: 80px;
 }
-.ChrisRalston .block--content.block--image {
-  opacity: 0;
-  transition: opacity 200ms ease;
-  transition-property: opacity, transform;
-  transform: translateY(300px);
-}
-.ChrisRalston .block--in-view.block--image {
-  opacity: 1;
-  transition: opacity 500ms ease 200ms, transform 300ms ease 200ms;
-  transform: none;
-}
 .ChrisRalston .block--content-full-width {
   margin-left: -32px;
   margin-right: -32px;
@@ -57,13 +46,11 @@
 }
 .ChrisRalston .block--image {
   width: 100%;
-  transition: opacity 1500ms ease;
   position: relative;
 }
 .ChrisRalston .block--image > img {
   width: 100%;
   height: auto;
-  position: absolute;
   top: 0;
 }
 .ChrisRalston .block--video {

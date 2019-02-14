@@ -77,6 +77,10 @@ class HeroImageBlock extends Component {
         this.setState({
             image: imageData
         });
+        this.props.onImageLoad({
+            index: this.props.index,
+            name: this.props.name
+        });
     }
 
     onImageError = (imageData) => {

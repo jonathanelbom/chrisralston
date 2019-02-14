@@ -91,7 +91,12 @@ class Project extends Component {
             if (marginBottom !==  this.state.marginBottom) {
                 changes.marginBottom = marginBottom;
             }
-            this.updateInView(windowHeight, true);
+            // this.updateInView(windowHeight, true);
+            this.updateBlockProperties({
+                updateSize: true,
+                windowHeight,
+                scrollTop: this.state.scrollTop
+            });
             this.setState(changes);            
         }
     }
@@ -100,28 +105,37 @@ class Project extends Component {
     onScroll = () => {
         const scrollTop = Math.round(this.scrollElem.current.scrollTop);
         if (this.state.scrollTop !== scrollTop) {
-            this.updateInView();
+            this.updateBlockProperties({
+                scrollTop: scrollTop,
+                windowHeight: this.state.windowHeight
+            });
             this.setState({
-                scrollTop
+                scrollTop,
             });
         }
     }
     onScrollThrottled = throttle(this.onScroll, 40);
 
-    updateInView(windowHeight, resize) {
-        // console.log('\n\nupdateInView');
-        this.project.blocks = this.project.blocks.map((block, index) => {
-            if (block.domRef) {
-                const {rect, inView, percentageScrolled} = util.isInView({
-                    domRef: block.domRef,
-                    windowHeight: windowHeight || this.state.windowHeight
-                });
+    onImageLoadUnthrottled = (imageData) => {
+        this.updateBlockProperties({
+            updateSize: true,
+            windowHeight: this.state.windowHeight,
+            scrollTop: this.state.scrollTop
+        })
+    }
+    onImageLoad = throttle(this.onImageLoadUnthrottled, 500);
 
-                if (block.name === 'hero') {
-                    // console.log(block.name, '> rect.bottom:', rect.bottom, ', inView: ', inView, ', percentageScrolled:', percentageScrolled);
-                    // console.log(block.name, '> pctScrolled:', percentageScrolled, ' rect.bottom:', rect.bottom, ', rect.height:', rect.height);
+    updateBlockProperties({updateSize = false, windowHeight, scrollTop}) {
+        this.project.blocks = this.project.blocks.map((block, index) => {
+            if (block.domRef && block.domRef.current) {
+                let blockTop = block.blockTop;
+                let blockHeight = block.blockHeight;
+                if (updateSize || !blockTop || !blockHeight) {
+                    blockTop = block.domRef.current.offsetTop || 0;
+                    blockHeight = block.domRef.current.offsetHeight || 0;
                 }
-                return {...block, inView, rect, percentageScrolled};
+                const {inView, percentageScrolled} = util.isInView({blockTop, blockHeight, scrollTop, windowHeight});
+                return {...block, inView, percentageScrolled, blockTop, blockHeight};
             }
             return block;
         });
@@ -178,6 +192,7 @@ class Project extends Component {
                                         <ImageBlock
                                             setRef={this.getSetRef(block.index)}
                                             key={`image-block-${block.index}`}
+                                            onImageLoad={this.onImageLoad}
                                             {...block}
                                         />
                                     );
@@ -194,6 +209,7 @@ class Project extends Component {
                                         <HeroImageBlock
                                             setRef={this.getSetRef(block.index)}
                                             key={`image-block-${block.index}`}
+                                            onImageLoad={this.onImageLoad}
                                             {...block}
                                         />
                                     );
@@ -202,8 +218,7 @@ class Project extends Component {
                                         <MultiImageBlock
                                             setRef={this.getSetRef(block.index)}    
                                             key={`multi-image-block-${block.index}`}
-                                            scrollTop={scrollTop}
-                                            windowWidth={windowWidth}
+                                            onImageLoad={this.onImageLoad}
                                             {...block}
                                         />
                                     );
@@ -211,8 +226,6 @@ class Project extends Component {
                                     return (
                                         <Navigation
                                             key={`navigation-${block.index}`}
-                                            scrollTop={scrollTop}
-                                            windowWidth={windowWidth}
                                             {...block}
                                         />
                                     );
