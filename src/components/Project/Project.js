@@ -26,9 +26,10 @@ class Project extends Component {
                 ...block,
                 index: index,
                 id: util.createId(),
-                className: block.className || '',
+                class: block.class || '',
                 inView: true,
-                domRef: undefined
+                domRef: undefined,
+                position: ''
             };
         });
 
@@ -36,6 +37,7 @@ class Project extends Component {
         this.project.blocks.push({
             type: 'navigation',
             name: 'navigation',
+            className: '',
             index: this.project.blocks.length,
             id: util.createId()
         });
@@ -44,7 +46,8 @@ class Project extends Component {
             windowWidth: 0,
             windowHeight: 0,
             marginBottom: 80,
-            scrollTop: 0 
+            scrollTop: 0,
+            scrollDirection: ''
         };
     }
 
@@ -95,7 +98,8 @@ class Project extends Component {
             this.updateBlockProperties({
                 updateSize: true,
                 windowHeight,
-                scrollTop: this.state.scrollTop
+                scrollTop: this.state.scrollTop,
+                scrollDirection: this.state.scrollDirection
             });
             this.setState(changes);            
         }
@@ -105,37 +109,46 @@ class Project extends Component {
     onScroll = () => {
         const scrollTop = Math.round(this.scrollElem.current.scrollTop);
         if (this.state.scrollTop !== scrollTop) {
+            const scrollDirection = scrollTop > this.state.scrollTop ? 'down' : 'up';
             this.updateBlockProperties({
                 scrollTop: scrollTop,
-                windowHeight: this.state.windowHeight
+                windowHeight: this.state.windowHeight,
+                scrollDirection: scrollDirection
             });
             this.setState({
                 scrollTop,
+                scrollDirection: scrollDirection
             });
         }
     }
     onScrollThrottled = throttle(this.onScroll, 40);
 
-    onImageLoadUnthrottled = (imageData) => {
+    onBlockLoadUnthrottled = (imageData) => {
         this.updateBlockProperties({
             updateSize: true,
             windowHeight: this.state.windowHeight,
-            scrollTop: this.state.scrollTop
+            scrollTop: this.state.scrollTop,
+            scrollDirection: this.state.scrollDirection
         })
     }
-    onImageLoad = throttle(this.onImageLoadUnthrottled, 500);
+    onBlockLoad = throttle(this.onBlockLoadUnthrottled, 500);
 
-    updateBlockProperties({updateSize = false, windowHeight, scrollTop}) {
+    updateBlockProperties({updateSize = false, windowHeight, scrollTop, scrollDirection}) {
         this.project.blocks = this.project.blocks.map((block, index) => {
             if (block.domRef && block.domRef.current) {
                 let blockTop = block.blockTop;
                 let blockHeight = block.blockHeight;
+                let blockWidth = block.blockWidth;
                 if (updateSize || !blockTop || !blockHeight) {
                     blockTop = block.domRef.current.offsetTop || 0;
                     blockHeight = block.domRef.current.offsetHeight || 0;
+                    blockWidth = block.domRef.current.offsetWidth || 0;
                 }
-                const {inView, percentageScrolled} = util.isInView({blockTop, blockHeight, scrollTop, windowHeight});
-                return {...block, inView, percentageScrolled, blockTop, blockHeight};
+                const {inView, percentageScrolled, position} = util.isInView({blockTop, blockHeight, scrollTop, windowHeight, position: block.position});
+                if (index === 0) {
+                    console.log('block.position:', block.position, ', inView:', inView, ', position:', position, ', blockWidth:', blockWidth);
+                }
+                return {...block, inView, percentageScrolled, position, blockTop, blockHeight, blockWidth};
             }
             return block;
         });
@@ -163,13 +176,22 @@ class Project extends Component {
                         </div>
                     </div>
                 </div>
-                <div className="Project-container" onScroll={this.onScrollThrottled} ref={this.scrollElem}>
+                <div className="Project-container" onScroll={this.onScroll} ref={this.scrollElem}>
                     <div className="Project">
                         {this.project.blocks.map((block, index) => {
                             block.style = {...(block.style || {}), marginBottom: `${block.type === 'image-hero' ? marginBottom * 2 : marginBottom}px`}
                             block.windowWidth = windowWidth;
                             block.windowHeight = windowHeight;
                             block.scrollTop = scrollTop;
+                            block.className = classnames(block.class, block.inView ? 'entered' : `exited--${block.position}`);
+                            // if (block.component) {
+                            //     const CustomBlock = block.component;
+                            //     return <CustomBlock
+                            //         setRef={this.getSetRef(block.index)}
+                            //         key={`custom-block-${block.index}`}
+                            //         onLoad={this.onBlockLoad}
+                            //     />
+                            // }
                             switch (block.type) {
                                 case 'title':
                                     return (
@@ -192,7 +214,7 @@ class Project extends Component {
                                         <ImageBlock
                                             setRef={this.getSetRef(block.index)}
                                             key={`image-block-${block.index}`}
-                                            onImageLoad={this.onImageLoad}
+                                            onLoad={this.onBlockLoad}
                                             {...block}
                                         />
                                     );
@@ -209,7 +231,7 @@ class Project extends Component {
                                         <HeroImageBlock
                                             setRef={this.getSetRef(block.index)}
                                             key={`image-block-${block.index}`}
-                                            onImageLoad={this.onImageLoad}
+                                            onLoad={this.onBlockLoad}
                                             {...block}
                                         />
                                     );
@@ -218,7 +240,7 @@ class Project extends Component {
                                         <MultiImageBlock
                                             setRef={this.getSetRef(block.index)}    
                                             key={`multi-image-block-${block.index}`}
-                                            onImageLoad={this.onImageLoad}
+                                            onLoad={this.onBlockLoad}
                                             {...block}
                                         />
                                     );

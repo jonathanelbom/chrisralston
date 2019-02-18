@@ -17,31 +17,31 @@ const agro = {
     blocks: [
         {
             type: 'image-hero',
-            className: '',
+            class: '',
             src: hero,
             name: 'hero',
         },
         {
             type: 'title',
-            className: '',
+            class: '',
             title: 'AGRO ENERGY',
             body: 'Agro Energy is a leader in energy systems in the agricultural sector in the Netherlands. Agro approached our team at TAM/TAM to update their platform, Energy Manager, to better accommodate greenhouse farmers\' ability to buy and sell energy in real-time.',
             name: 'title'
         },
         {
             type: 'image',
-            className: 'agro__wireframes',
+            class: 'agro__wireframes',
             src: wireframes,
             name: 'wireframes',
-            // imageScrollStyle: (pct) => {
-            //     return {
-            //         transform: `translateY(${40 + util.getScrollPctCWN(pct) * 140}px)`       
-            //     };
-            // }
+            imageScrollStyle: (pct) => {
+                return {
+                    transform: `translateY(${40 + util.getScrollPctCWN(pct) * 140}px)`       
+                };
+            }
         },
         {
             type: 'image',
-            className: 'agro__desktop',
+            class: 'agro__desktop',
             src: desktop,
             name: 'desktop',
             style: {'backgroundColor': '#171719', 'paddingTop': '100px'},
@@ -54,7 +54,7 @@ const agro = {
         },
         {
             type: 'image',
-            className: 'agro__handphone',
+            class: 'agro__handphone',
             src: handPhone,
             name: 'handPhone',
             // imageScrollStyle: (pct) => {
@@ -66,7 +66,7 @@ const agro = {
         },
         {
             type: 'image-multi',
-            className: '',
+            class: '',
             name: 'iphone-multi',
             style: {
                 backgroundColor: '#171719'
@@ -94,33 +94,33 @@ const agro = {
         },
         {
             type: 'image',
-            className: '',
+            class: '',
             src: iphoneSingle,
             name: 'iphone-single',
             style: {'backgroundColor': '#171719'}
         },
         {
             type: 'image',
-            className: '',
+            class: '',
             src: handWatch,
             name: 'hand-watch'
         },
         {
             type: 'image',
-            className: '',
+            class: '',
             src: watches,
             name: 'watches'
         },
         {
             type: 'video',
-            className: '',
+            class: '',
             name: 'grid',
             videoId: 'dlaDXbDyuys',
             aspectRatio: 1.778
         },
         {
             type: 'details',
-            className: '',
+            class: '',
             name: 'details',
             role: 'Sr. Interaction Designer',
             client: 'Agro Energy',

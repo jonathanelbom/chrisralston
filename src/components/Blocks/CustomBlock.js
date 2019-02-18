@@ -92,8 +92,7 @@ class ImageBlock extends Component {
             style,
             rect,
             percentageScrolled,
-            imageScrollStyle,
-            viewState
+            imageScrollStyle
         } = this.props;
 
         // if (name === 'desktop') {
@@ -105,16 +104,15 @@ class ImageBlock extends Component {
             aspectRatio
         } = this.state;
         
-        const imgClassName = classnames('block__image', className, {
+        const imgClassName = classnames('block__image', {
             'block__image--not-loaded': readyState === READY_STATE.NOT_STARTED,
-            'block__image--loaded': readyState === READY_STATE.COMPLETE
-            // [className]: isMultiImage
+            'block__image--loaded': readyState === READY_STATE.COMPLETE,
+            [className]: isMultiImage
         });
 
-        const rootClasses = classnames('block--image block--content', className, {
-            // [className]: !isMultiImage,
-            'block--in-view': inView,
-            // [viewState]: !!viewState
+        const rootClasses = classnames('block--image block--content', {
+            [className]: !isMultiImage,
+            'block--in-view': inView
         });
 
         let imgStyle = {};
@@ -124,7 +122,6 @@ class ImageBlock extends Component {
         }
 
         let updatedStyle = {...style};
-        // console.log('rect:', rect);
         if (aspectRatio > 0 && rect) {
             updatedStyle.height = `${rect.width / aspectRatio}px`;
         }

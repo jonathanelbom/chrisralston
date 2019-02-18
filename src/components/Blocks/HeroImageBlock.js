@@ -77,7 +77,7 @@ class HeroImageBlock extends Component {
         this.setState({
             image: imageData
         });
-        this.props.onImageLoad({
+        this.props.onLoad({
             index: this.props.index,
             name: this.props.name
         });
@@ -119,8 +119,8 @@ class HeroImageBlock extends Component {
                     // style={{
                     //     transform: `translateX(${(1 - this.props.percentInView) * 200}px)`
                     // }}
-                    onImageLoad={this.onImageLoad}
-                    onImageError={this.onImageError}
+                    onLoad={this.onImageLoad}
+                    onError={this.onImageError}
                     isHeroImage
                 />
             </div>

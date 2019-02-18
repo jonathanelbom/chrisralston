@@ -66,15 +66,6 @@ body {
 .ChrisRalston .Project__title--job {
   color: #AEB5BC;
 }
-.ChrisRalston .agro__iphone_1_3 {
-  transform: translateZ(3px) scale(0.73) translateY(-180px);
-}
-.ChrisRalston .agro__iphone_2_3 {
-  transform: translateZ(7px) scale(0.8) translateY(-40px);
-}
-.ChrisRalston .agro__iphone_3_3 {
-  transform: translateZ(2px) scale(0.91) translateY(-40px);
-}
 .ChrisRalston .agro__wireframes {
   background-color: #f6f7f8;
   overflow: hidden;

@@ -52,7 +52,7 @@ class MultiImageBlock extends Component {
             loaded: true
         });
         if (!this.state.loaded) {
-            this.props.onImageLoad({index, name})
+            this.props.onLoad({index, name})
         }
     }
 
@@ -89,8 +89,8 @@ class MultiImageBlock extends Component {
                             className={imgClasses}
                             isMultiImage
                             index={index}
-                            onImageLoad={this.onImageLoad}
-                            onImageError={this.onImageError}
+                            onLoad={this.onImageLoad}
+                            onError={this.onImageError}
                         />
                     );
                 })}

@@ -6,21 +6,23 @@
         .max-width();
         margin-bottom: 80px;
 
-        // &.block--image {
+        // transition: transform 350ms ease 200ms, opacity 350ms linear 200ms;
+
+        // &.entered {
+        //     transform: none;
+        //     opacity: 1;
+        // }
+
+        // &.exited--below {
+        //     transform: translateY(200px);
         //     opacity: 0;
-        //     transition: opacity 200ms ease;
-        //     transition-property: opacity, transform;
-        //     transform: translateY(300px);
+        // }
+
+        // &.exited--above {
+        //     transform: translateY(-200px);
+        //     opacity: 0;
         // }
     }
-
-    // .block--in-view {
-    //     &.block--image {
-    //         opacity: 1;
-    //         transition: opacity 500ms ease 200ms, transform 300ms ease 200ms;
-    //         transform: none;
-    //     }
-    // }
 
     .block--content-full-width {
         margin-left: -@gutter;
@@ -94,7 +96,7 @@
             width: 100%;
             height: auto;
             // position: absolute;
-            top: 0;
+            // top: 0;
         }
     }
 

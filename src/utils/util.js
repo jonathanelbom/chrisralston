@@ -53,36 +53,21 @@ const util = {
         return minHeight + (maxHeight - minHeight) * ((width - minWidth) / (maxWidth - minWidth));
     },
 
-    // isInView({domRef, windowHeight, rect, threshold = 0}) {
-    //     rect = rect || domRef.current.getBoundingClientRect();
-    //     const {top, height, bottom} = rect;
-    //     const inView = (top < windowHeight + threshold && top + height + threshold > 0);
-    //     let percentageScrolled = 0;
-    //     if (inView) {
-    //         percentageScrolled = 1 - (bottom / (windowHeight + height))
-    //     }
-    //     return {
-    //         rect,
-    //         inView,
-    //         percentageScrolled
-    //     };
-    // },
-
-    isInView({blockTop, blockHeight, scrollTop, windowHeight, rect, threshold = 0}) {
+    isInView({blockTop, blockHeight, scrollTop, windowHeight, position, threshold = 0}) {
         const top = blockTop - scrollTop;
         const bottom = top + blockHeight;
-        // console.log('isInView'
-        //     , '\n\tblockTop:', blockTop, ', blockHeight:', blockHeight, ', scrollTop:', scrollTop, ', windowHeight:', windowHeight
-        //     , '\n\ttop:', top, ', bottom:', bottom
-        // );
         const inView = (top < windowHeight + threshold && top + blockHeight + threshold > 0);
         let percentageScrolled = 0;
         if (inView) {
             percentageScrolled = 1 - (bottom / (windowHeight + blockHeight))
+        } else {
+            position = top >= windowHeight + threshold ? 'below' : 'above';
         }
+
         return {
             inView,
-            percentageScrolled
+            percentageScrolled,
+            position
         };
     },
 
