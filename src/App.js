@@ -1,20 +1,19 @@
 import React, {Component, Fragment} from 'react';
 import classnames from 'classnames';
-import logo from './logo.svg';
-import './App.css';
+import {CSSTransition} from 'react-transition-group';
 
 import Header from './components/Header/Header';
 import AppContext from './context/AppContext';
 import constants from './constants';
 import LandingPage from './components/LandingPage/LandingPage';
 import Project from './components/Project/Project';
-import Agro from './components/Agro/Agro';
 import {agro} from './projects';
 
+// import logo from './logo.svg';
+import './App.css';
+
+
 const projects = [
-    agro,
-    agro,
-    agro,
     agro,
     agro
 ];
@@ -25,14 +24,14 @@ class App extends Component {
         super(props)
 
         this.changeMode = (mode) => {
-            console.log('App > changeMode, mode:', mode);
+            // console.log('App > changeMode, mode:', mode);
             if (mode !== this.state.mode) {
                 this.setState({mode})
             }
         };
     
         this.changeIndex = (index) => {
-            console.log('App > changeMode, index:', index);
+            // console.log('App > changeMode, index:', index);
             if (index !== this.state.index || this.state.mode !== constants.MODE_CASE_STUDY) {
                 this.setState({
                     index,
@@ -52,7 +51,7 @@ class App extends Component {
         };
 
         this.state = {
-            mode: constants.MODE_CASE_STUDY, // constants.MODE_LANDING_PAGE,
+            mode: constants.MODE_LANDING_PAGE, // constants.MODE_CASE_STUDY, // constants.MODE_LANDING_PAGE,
             index: 0,
             changeMode: this.changeMode,
             changeIndex: this.changeIndex,
@@ -82,6 +81,7 @@ class App extends Component {
     }
 
     render() {
+        const timeout = 1100;
         const {index, mode} = this.state;
         // const CaseStudy = caseStudies[index];
         const containerClass = classnames('ChrisRalston__content-container', {
@@ -91,22 +91,39 @@ class App extends Component {
         return (
             <AppContext.Provider value={this.state}>
                 <Fragment>
-                    <Header />
-                    {/* <div className={containerClass}> */}
-                        {mode === constants.MODE_LANDING_PAGE &&
-                            <AppContext.Consumer>
-                                {({changeMode, changeIndex}) => (
-                                    <LandingPage
-                                        changeMode={changeMode}
-                                        changeIndex={changeIndex}
-                                    />
-                                )}
-                            </AppContext.Consumer>
-                        }
-                        {mode === constants.MODE_CASE_STUDY &&
-                            <Project project={projects[index]}/>
-                        }
-                    {/* </div> */}
+                <AppContext.Consumer>
+                    {({changeMode}) => (<Header changeMode={changeMode}/>)}
+                </AppContext.Consumer>
+                    <CSSTransition
+                        in={mode === constants.MODE_LANDING_PAGE}
+                        timeout={timeout}
+                        classNames="LandingPage-transition"
+                        unmountOnExit
+                        mountOnEnter
+                        appear
+                    >
+                        <AppContext.Consumer>
+                            {({changeMode, changeIndex}) => (
+                                <LandingPage
+                                    changeMode={changeMode}
+                                    changeIndex={changeIndex}
+                                />
+                            )}
+                        </AppContext.Consumer>
+                    </CSSTransition>
+                    {projects.map((project, i) => (
+                        <CSSTransition
+                            key={`project-${i}`}
+                            in={mode === constants.MODE_CASE_STUDY && index === i}
+                            timeout={timeout}
+                            classNames={`Project-transition`}
+                            unmountOnExit
+                            mountOnEnter
+                            appear
+                        >
+                            <Project project={projects[i]}/>
+                        </CSSTransition>
+                    ))}
                 </Fragment>
             </AppContext.Provider>
         );

@@ -13,6 +13,7 @@ import iphone_3_3 from '../img/argo/iphone-black-right.png';
 import util from '../utils/util';
 
 const agro = {
+    id: 'agro',
     title: 'Agro Energy',
     blocks: [
         {
@@ -32,12 +33,12 @@ const agro = {
             type: 'image',
             class: 'agro__wireframes',
             src: wireframes,
-            name: 'wireframes',
-            imageScrollStyle: (pct) => {
-                return {
-                    transform: `translateY(${40 + util.getScrollPctCWN(pct) * 140}px)`       
-                };
-            }
+            name: 'wireframes'
+            // imageScrollStyle: (pct) => {
+            //     return {
+            //         transform: `translateY(${40 + util.getScrollPctCWN(pct) * 140}px)`       
+            //     };
+            // }
         },
         {
             type: 'image',

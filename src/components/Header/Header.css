@@ -6,7 +6,6 @@
   z-index: 10;
   mix-blend-mode: difference;
   pointer-events: none;
-  visibility: hidden;
 }
 .Header {
   padding: 64px 0 0;
@@ -25,10 +24,15 @@
 }
 .Header__link {
   text-transform: uppercase;
+  pointer-events: auto;
+  user-select: none;
+  cursor: pointer;
+  outline: none;
 }
 .Header__item {
   padding: 36px;
   white-space: nowrap;
+  user-select: none;
 }
 .Header__header {
   display: flex;

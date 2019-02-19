@@ -1,11 +1,4 @@
-@dark: #171719;
-@font-grey: #CCD3DA;
-@border: #959AA0;
-@padding: 32px;
-@opacity: 0.3;
-@width: 103px;
-@width-short: 63px;
-@width-long: 143px;
+@import (reference) '../../shared.less';
 
 .LandingPage {
     position: relative;
@@ -14,6 +7,71 @@
     flex-flow: column;
     align-items: center;
     perspective: 800px;
+    height: 100vh;
+    background-color: @dark;
+    padding-top: @padding-under-header * 2;
+    // z-index: 20;
+    
+    &::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        display: none;
+        background-color: #fff;
+        pointer-events: none;
+        transform-origin: left;
+    }
+
+    &-transition {
+        &-enter::after {
+            display: block;
+            transform: scaleX(1);
+        }
+
+        &-enter-active::after {
+            display: block;
+            transform: scaleX(0);
+            transition: transform @duration @ease @duration;
+        }
+
+        &-enter-done::after {
+            display: none;
+        }
+
+        &-exit::after {
+            display: block;
+            transform-origin: right;
+            background-color: #fff;
+            // opacity: 0;
+            transform: scaleX(0);
+        }
+
+        &-exit-active::after {
+            display: block;
+            // opacity: 1;
+            transform: scaleX(1);
+            transition: opacity @duration @ease;
+            transition-property: opacity, transform;            
+        }
+
+        &-exit-done::after {
+            display: none;
+        }
+
+        &-appear::after {
+            display: block;
+            transform: scaleX(1);
+        }
+
+        &-appear-active::after {
+            display: block;
+            transform: scaleX(0);
+            transition: transform @duration @ease @duration;
+        }
+    }
 
     &__jobs {
         display: flex;

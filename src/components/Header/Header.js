@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import classnames from 'classnames';
+
 import AppContext from '../../context/AppContext';
+import constants from '../../constants';
+
 import './Header.css';
 
 class Header extends Component {
@@ -16,26 +19,29 @@ class Header extends Component {
                 },
                 {
                     title: 'About',
-                    action: this.onAboutAction
+                    handler: this.onAboutAction
                 },
                 {
                     title: 'Contact',
-                    action: this.onContactAction
+                    handler: this.onContactAction
                 }
             ]
         }
     }
 
     onWorkAction = () => {
-        console.log('onWorkAction');
+        // console.log('onWorkAction, this.props.changeMode:', this.props.changeMode);
+        if (this.props.changeMode) {
+            this.props.changeMode(constants.MODE_LANDING_PAGE);
+        }
     }
 
     onAboutAction = () => {
-        console.log('onAboutAction');
+        // console.log('onAboutAction');
     }
 
     onContactAction = () => {
-        console.log('onContactAction');
+        // console.log('onContactAction');
     }
 
     getLinkClasses(index) {
@@ -44,7 +50,6 @@ class Header extends Component {
 
     render() {
         const {links} = this.state;
-        console.log('links:', links);
         return (
             <div className="Header-container">
                 <header
@@ -61,7 +66,7 @@ class Header extends Component {
                                 key={`nav-item-${index}`}
                                 role="button"
                                 tabIndex="0"
-                                onClick={link.onClick}
+                                onClick={link.handler}
                                 className={this.getLinkClasses(index)}
                             >
                                 {link.title}

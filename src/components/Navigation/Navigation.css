@@ -9,7 +9,8 @@
   background-color: #171719;
   width: 100vw;
   position: relative;
-  padding-top: 60%;
+  padding-top: 65%;
+  max-height: 750px;
 }
 .Navigation__wrapper {
   position: absolute;

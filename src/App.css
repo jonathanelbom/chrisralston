@@ -25,12 +25,64 @@ body {
 .ChrisRalston {
   min-height: 100vh;
 }
+.ChrisRalston .Project-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+.ChrisRalston .Project-wrapper::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  transform: scaleX(0.85);
+  transform-origin: left;
+  background-color: #fff;
+}
+.ChrisRalston .Project-transition-enter .Project {
+  transform: translateX(200px);
+  opacity: 0;
+}
+.ChrisRalston .Project-transition-enter-active .Project {
+  transform: none;
+  opacity: 1;
+  transition: transform 600ms ease 600ms;
+  transition-property: opacity, transform;
+}
+.ChrisRalston .Project-transition-enter-done {
+  background-color: #fff;
+}
+.ChrisRalston .Project-transition-exit .Project {
+  opacity: 1;
+}
+.ChrisRalston .Project-transition-exit-active .Project {
+  transform: translateX(-200px);
+  opacity: 0;
+  transition: transform 600ms ease;
+  transition-property: opacity, transform;
+}
+.ChrisRalston .Project-transition-exit-done {
+  opacity: 0;
+  transform: scaleX(1);
+  transition: transform 600ms cubic-bezier(1, 0, 0, 1);
+}
+.ChrisRalston .Project-transition-appear .Project {
+  transform: translateY(200px);
+  opacity: 0;
+}
+.ChrisRalston .Project-transition-appear-active .Project {
+  transform: none;
+  opacity: 1;
+  transition: transform 600ms cubic-bezier(1, 0, 0, 1) 600ms, opacity 600ms linear 600ms;
+}
 .ChrisRalston .Project-container {
   padding: 0 32px 0;
   overflow-x: hidden;
   overflow-y: scroll;
   max-height: 100vh;
-  background-color: #fff;
 }
 .ChrisRalston .Project {
   padding-top: 120px;

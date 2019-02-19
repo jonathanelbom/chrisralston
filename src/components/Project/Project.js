@@ -33,15 +33,6 @@ class Project extends Component {
             };
         });
 
-        // push navigation module
-        this.project.blocks.push({
-            type: 'navigation',
-            name: 'navigation',
-            className: '',
-            index: this.project.blocks.length,
-            id: util.createId()
-        });
-
         this.state = {
             windowWidth: 0,
             windowHeight: 0,
@@ -145,9 +136,9 @@ class Project extends Component {
                     blockWidth = block.domRef.current.offsetWidth || 0;
                 }
                 const {inView, percentageScrolled, position} = util.isInView({blockTop, blockHeight, scrollTop, windowHeight, position: block.position});
-                if (index === 0) {
-                    console.log('block.position:', block.position, ', inView:', inView, ', position:', position, ', blockWidth:', blockWidth);
-                }
+                // if (index === 0) {
+                //     console.log('block.position:', block.position, ', inView:', inView, ', position:', position, ', blockWidth:', blockWidth);
+                // }
                 return {...block, inView, percentageScrolled, position, blockTop, blockHeight, blockWidth};
             }
             return block;
@@ -167,7 +158,7 @@ class Project extends Component {
         } = this.state;
 
         return (
-            <Fragment>
+            <div className="Project-wrapper">
                 <div className="Project__title-container">
                     <div className="Project__title-wrapper">
                         <div className="Project__title">
@@ -243,21 +234,20 @@ class Project extends Component {
                                             onLoad={this.onBlockLoad}
                                             {...block}
                                         />
-                                    );
-                                case 'navigation':
-                                    return (
-                                        <Navigation
-                                            key={`navigation-${block.index}`}
-                                            {...block}
-                                        />
-                                    );
+                                    );                                
                                 default:
                                     return (<div>{`Block type: ${block.type} unknown`}</div>);
                             }
                         })}
+                        <Navigation
+                            key={`navigation-block`}
+                            type="navigation"
+                            name="navigation"
+                            className=""
+                        />
                     </div>
                 </div>
-            </Fragment>
+            </div>
         );
     }
 }

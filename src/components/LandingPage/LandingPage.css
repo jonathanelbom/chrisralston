@@ -5,6 +5,57 @@
   flex-flow: column;
   align-items: center;
   perspective: 800px;
+  height: 100vh;
+  background-color: #171719;
+  padding-top: 240px;
+}
+.LandingPage::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: none;
+  background-color: #fff;
+  pointer-events: none;
+  transform-origin: left;
+}
+.LandingPage-transition-enter::after {
+  display: block;
+  transform: scaleX(1);
+}
+.LandingPage-transition-enter-active::after {
+  display: block;
+  transform: scaleX(0);
+  transition: transform 600ms cubic-bezier(1, 0, 0, 1) 600ms;
+}
+.LandingPage-transition-enter-done::after {
+  display: none;
+}
+.LandingPage-transition-exit::after {
+  display: block;
+  transform-origin: right;
+  background-color: #fff;
+  transform: scaleX(0);
+}
+.LandingPage-transition-exit-active::after {
+  display: block;
+  transform: scaleX(1);
+  transition: opacity 600ms cubic-bezier(1, 0, 0, 1);
+  transition-property: opacity, transform;
+}
+.LandingPage-transition-exit-done::after {
+  display: none;
+}
+.LandingPage-transition-appear::after {
+  display: block;
+  transform: scaleX(1);
+}
+.LandingPage-transition-appear-active::after {
+  display: block;
+  transform: scaleX(0);
+  transition: transform 600ms cubic-bezier(1, 0, 0, 1) 600ms;
 }
 .LandingPage__jobs {
   display: flex;

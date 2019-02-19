@@ -6,7 +6,7 @@
     z-index: 10;
     mix-blend-mode: difference;
     pointer-events: none;
-    visibility: hidden;
+    // visibility: hidden;
 }
 
 .Header {
@@ -29,11 +29,16 @@
 
     &__link {
         text-transform: uppercase;
+        pointer-events: auto;
+        user-select: none;
+        cursor: pointer;
+        outline: none;
     }
 
     &__item {
         padding: 36px;
         white-space: nowrap;
+        user-select: none;
     }
         
     &__header {

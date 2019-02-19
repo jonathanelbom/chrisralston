@@ -31,6 +31,97 @@ html, body {
 .ChrisRalston {
     min-height: 100vh;
 
+    .Project-wrapper {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+
+        &::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            transform: scaleX(0.85);
+            transform-origin: left;
+            background-color: #fff;
+        }
+    }
+
+    .Project-transition {
+        &-enter {
+            .Project {
+                transform: translateX(200px);
+                opacity: 0;
+            }
+        }
+
+        &-enter-active {
+            .Project {
+                transform: none;
+                opacity: 1;
+                transition: transform @duration ease @duration;
+                transition-property: opacity, transform;
+            }
+        }
+
+        &-enter-done {
+            background-color: @white;
+        }
+        &-exit {
+            // &::after {
+            //     transform: scaleX(0);
+            // }
+
+            .Project {
+                opacity: 1;
+            }
+        }
+        &-exit-active {
+            // &::after {
+            //     transform: scaleX(1);
+            //     opacity: 0;
+            //     transition: transform @duration @ease;
+            //     transition-property: opacity, transform;
+            // }
+
+            .Project {
+                transform: translateX(-200px);
+                opacity: 0;
+                transition: transform @duration ease;
+                transition-property: opacity, transform;
+            }
+        }
+
+        &-exit-done {
+            opacity: 0;
+            // display: none;
+            transform: scaleX(1);
+            transition: transform @duration @ease;
+            
+            .Project {
+                
+            }
+        }
+
+        &-appear {
+            .Project {
+                transform: translateY(200px);
+                opacity: 0;
+            }
+        }
+        &-appear-active {
+            .Project {
+                transform: none;
+                opacity: 1;
+                transition: transform @duration @ease @duration,
+                    opacity @duration linear @duration;
+            }
+        }
+    }
+
     .Project-container {
         padding: 0 @gutter 0;
         overflow-x: hidden;
@@ -38,9 +129,9 @@ html, body {
         // perspective: 30px;
         // perspective-origin: top center;
         max-height: 100vh;
-        background-color: @white;
+        // background-color: @white;
     }
-
+    
     .Project {
         // width: 100%;
         // max-width: @content-max-width;
@@ -83,7 +174,7 @@ html, body {
             }
         }
     }
-
+        
     // .agro__iphone_1_3 {
     //     transform: translateZ(3px) scale(.73) translateY(-180px);
     // }
