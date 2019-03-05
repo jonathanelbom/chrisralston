@@ -3,24 +3,21 @@
   top: 0;
   left: 0;
   width: 100%;
-  z-index: 10;
+  z-index: 100;
   mix-blend-mode: difference;
   pointer-events: none;
 }
 .Header {
-  padding: 64px 0 0;
+  padding: 24px 0 0;
   width: 100%;
-  max-width: 1170px;
+  max-width: 1352px;
   margin: 0 auto;
   color: #fff;
   display: flex;
 }
-.Header__logo {
-  flex-grow: 1;
-  text-transform: uppercase;
-}
 .Header__nav {
   display: flex;
+  padding-right: 36px;
 }
 .Header__link {
   text-transform: uppercase;
@@ -30,13 +27,17 @@
   outline: none;
 }
 .Header__item {
-  padding: 36px;
+  padding: 36px 12px;
   white-space: nowrap;
   user-select: none;
+}
+.Header__logo {
+  flex-grow: 1;
+  text-transform: uppercase;
+  padding-left: 36px;
 }
 .Header__header {
   display: flex;
   justify-content: space-between;
-  width: 90%;
   margin: 56px 0 64px;
 }

@@ -81,7 +81,11 @@ class App extends Component {
     }
 
     render() {
-        const timeout = 1100;
+        const timeout = {
+            enter: 1100,
+            exit: 550,
+        };
+
         const {index, mode} = this.state;
         // const CaseStudy = caseStudies[index];
         const containerClass = classnames('ChrisRalston__content-container', {

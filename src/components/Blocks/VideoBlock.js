@@ -9,6 +9,24 @@ import util, {READY_STATE} from '../../utils/util';
 // styles
 import './Block.css';
 
+// const READY_STATE = {
+//     UNSTARTED: -1,
+//     ENDED: 0,
+//     PLAYING: 1,
+//     PAUSED: 2,
+//     BUFFERING: 3,
+//     CUED: 5
+// };
+
+// const READY_STATE = {
+//     UNSTARTED: -1,
+//     ENDED: 0,
+//     PLAYING: 1,
+//     PAUSED: 2,
+//     BUFFERING: 3,
+//     CUED: 5
+// };
+
 class VideoBlock extends Component {
     static propTypes = {
         index: PropTypes.number,
@@ -44,6 +62,7 @@ class VideoBlock extends Component {
             playerState: -2
         }
 
+        this.video = React.createRef();
         this.elem = React.createRef();
         if (this.props.setRef) {
             this.props.setRef(this.elem);
@@ -51,26 +70,27 @@ class VideoBlock extends Component {
     }
     
     componentDidUpdate(prevProps) {
-        // console.log('this.videoPlayer:', this.videoPlayer);
-        if (this.videoPlayer) {
+        if (this.video.current) {
             if (prevProps.inView !== this.props.inView) {
                 if (this.props.inView) {
                     this.playVideo();
                 } else {
                     this.pauseVideo();
                 }
-            } else if (this.props.inView && [1, 3].indexOf(this.playerState) === -1) {
+            } else if (this.props.inView && this.video.current.paused) {
                 this.playVideo();
-            } else if (!this.props.inView && [1, 3].indexOf(this.playerState) > -1) {
+            } else if (!this.props.inView && !this.video.current.paused) {
                 this.pauseVideo();
             }
         }
     }
 
     playVideo() {
-        if (this.videoPlayer) {
+        // console.log('this.videoPlayer:', this.videoPlayer, ', this.video:', this.video);
+        if (this.video.current) {
             try {
-                this.videoPlayer.playVideo()
+                this.video.current.play();
+                console.log('play');
             } catch (e) {
                 console.error('ERROR > playVideo\ne:', e);
             }
@@ -78,58 +98,75 @@ class VideoBlock extends Component {
     }
 
     pauseVideo() {
-        if (this.videoPlayer) {
+        if (this.video.current) {
             try {
-                this.videoPlayer.pauseVideo()
+                this.video.current.pause();
+                console.log('pause');
             } catch (e) {
                 console.error('ERROR > pauseVideo\ne:', e);
             }
         }
     }
 
-    onIframeLoad = (e) => {
-        if (e && e.target) {
-            this.videoPlayer = e.target;
-            console.log('onIframeLoad, this.state.videoPlaying:', this.state.videoPlaying, ', this.props.inView:', this.props.inView);
-            if (!this.state.iframeLoaded) {
-                const triggerPlay = this.props.inView && (this.state.playerState !== 1 || this.state.playerState !== 3);
-                this.setState({
-                    iframeLoaded: true
-                }, () => {
-                    console.log('===== play, triggerPlay:', triggerPlay)
-                    if (triggerPlay) {
-                        const intervalId = setInterval(() => {
-                            if (this.state.playerState === 1 || this.state.playerState === 3) {
-                                clearInterval(intervalId);
-                            } else {
-                                this.videoPlayer.playVideo();
-                                console.log('===== play timeout');
-                            }
-                        }, 200);
-                    }
-                });
-            }
-        }
-    }
+    // onIframeLoad = (e) => {
+    //     if (e && e.target) {
+    //         this.videoPlayer = e.target;
+    //         console.log('onIframeLoad, this.state.videoPlaying:', this.state.videoPlaying, ', this.props.inView:', this.props.inView);
+    //         if (!this.state.iframeLoaded) {
+    //             const triggerPlay = this.props.inView && (this.state.playerState !== 1 || this.state.playerState !== 3);
+    //             this.setState({
+    //                 iframeLoaded: true
+    //             }, () => {
+    //                 console.log('===== play, triggerPlay:', triggerPlay)
+    //                 if (triggerPlay) {
+    //                     const intervalId = setInterval(() => {
+    //                         if (this.state.playerState === 1 || this.state.playerState === 3) {
+    //                             clearInterval(intervalId);
+    //                         } else {
+    //                             this.videoPlayer.playVideo();
+    //                             console.log('===== play timeout');
+    //                         }
+    //                     }, 200);
+    //                 }
+    //             });
+    //         }
+    //     }
+    // }
 
-    onStateChange = (e) => {
-        console.log('onStateChange, e.data:', e.data);
-        if (e) {
-            if (e.hasOwnProperty('data') && e.data !== this.state.playerState) {
-                this.setState({
-                    playerState: e.data
-                })
-            }
-            // if (!this.state.videoPlaying && e.data === 1) {
-            //     this.setState({
-            //         videoPlaying: true
-            //     })
-            // } else  if (this.state.videoPlaying && e.data !== 1) {
-            //     this.setState({
-            //         videoPlaying: false
-            //     })
-            // }
-        }
+    // onStateChange = (e) => {
+    //     console.log('onStateChange, e.data:', e.data);
+    //     if (e) {
+    //         if (e.hasOwnProperty('data') && e.data !== this.state.playerState) {
+    //             this.setState({
+    //                 playerState: e.data
+    //             })
+    //         }
+    //         // if (!this.state.videoPlaying && e.data === 1) {
+    //         //     this.setState({
+    //         //         videoPlaying: true
+    //         //     })
+    //         // } else  if (this.state.videoPlaying && e.data !== 1) {
+    //         //     this.setState({
+    //         //         videoPlaying: false
+    //         //     })
+    //         // }
+    //     }
+    // }
+
+    // onLoadedMetadata = (e) => {
+    //     console.log('onLoadedMetadata, e.target.width:', e.target.width, ', e.target.height:', e.target.height);
+    // }
+
+    // onLoadedData = (e) => {
+    //     console.log('onLoadedData, e.target.width:', e.target.width, ', e.target.height:', e.target.height);
+    // }
+
+    // onEnded = (e) => {
+    //     console.log('onEnded, e.target.readyState:', e.target.readyState);
+    // }
+
+    onWaiting = (e) => {
+        console.log('onWaiting, e.target:', e.target);
     }
 
     render() {
@@ -139,8 +176,10 @@ class VideoBlock extends Component {
             inView,
             name,
             style,
+            src,
             aspectRatio,
-            rect,
+            blockWidth
+            // rect,
         } = this.props;
 
         const {
@@ -151,12 +190,12 @@ class VideoBlock extends Component {
 
         const rootClasses = classnames('block--video block--content');
 
-
-        const height = rect.width / aspectRatio;
+        const height = blockWidth / aspectRatio;
+        // const height = rect.width / aspectRatio;
         
         const opts = {
             height: `${height}px`,
-            width: `${rect.width}px`,
+            width: `${blockWidth}px`,
             playerVars: {
                 controls: 0,
                 fs: 0,
@@ -174,24 +213,23 @@ class VideoBlock extends Component {
             return (
                 <div
                     className={rootClasses}
-                    style={{
-                        ...style, height: `${height}px`
-                    }}
                     ref={this.elem}
+                    style={{...style, height: `${height}px`}}
                 >
-                    {/*    
-                        <YouTube
-                            className={''}
-                            videoId={videoId}
-                            opts={opts}
-                            onReady={this.onIframeLoad}
-                            onStateChange={this.onStateChange}
-                        />
-                        <img
-                            className={imgClasses}
-                            src={`https://i.ytimg.com/vi_webp/${videoId}/maxresdefault.webp`}
-                        />
-                    */}
+                    {inView && 
+                        <video
+                            ref={this.video}
+                            controls
+                            // loop
+                            preload="none"
+                            // poster="poster.png"
+                        >
+                            <source
+                                src={src} 
+                                type='video/mp4;codecs="avc1.42E01E, mp4a.40.2"'
+                            />
+                        </video>
+                    }
                 </div>
             );
         }
@@ -206,7 +244,7 @@ class VideoBlock extends Component {
                     className={''}
                     video={videoId}
                     height={`${height}px`}
-                    width={`${rect.width}px`}
+                    width={`${blockWidth}px`}
                     loop={true}
                     playlist={videoId}
                     autoplay={true}

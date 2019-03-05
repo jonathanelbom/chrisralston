@@ -3,7 +3,7 @@
     top: 0;
     left: 0;
     width: 100%;
-    z-index: 10;
+    z-index: 100;
     mix-blend-mode: difference;
     pointer-events: none;
     // visibility: hidden;
@@ -11,20 +11,16 @@
 
 .Header {
     // padding: 64px 64px 0;
-    padding: 64px 0 0;
+    padding: 24px 0 0; // 64px 0 0;
     width: 100%;
-    max-width: 1170px;    
+    max-width: 1352px; // 1170px;    
     margin: 0 auto;
     color: #fff;
     display: flex;
     
-    &__logo {
-        flex-grow: 1;
-        text-transform: uppercase;
-    }
-
     &__nav {
         display: flex;
+        padding-right: 36px;
     }
 
     &__link {
@@ -36,15 +32,21 @@
     }
 
     &__item {
-        padding: 36px;
+        padding: 36px 12px;
         white-space: nowrap;
         user-select: none;
     }
-        
+    
+    &__logo {
+        flex-grow: 1;
+        text-transform: uppercase;
+        padding-left: 36px;
+    }
+
     &__header {
         display: flex;
         justify-content: space-between;
-        width: 90%;
+        // width: 90%;
         margin: 56px 0 64px;
     }
 }

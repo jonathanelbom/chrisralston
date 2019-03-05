@@ -36,6 +36,7 @@ html, body {
         top: 0;
         left: 0;
         width: 100%;
+        background-color: @white;
 
         &::after {
             content: '';
@@ -44,66 +45,75 @@ html, body {
             right: 0;
             bottom: 0;
             left: 0;
-            transform: scaleX(0.85);
-            transform-origin: left;
+            //opacity: 0;
+            transform: scaleX(0);
+            transform-origin: right;
             background-color: #fff;
         }
     }
-
+    
     .Project-transition {
         &-enter {
-            .Project {
-                transform: translateX(200px);
-                opacity: 0;
+            // .Project {
+            //     transform: translateX(600px);
+            //     opacity: 0;
+            // }
+            &::after {
+                transform: none;
             }
         }
 
         &-enter-active {
-            .Project {
-                transform: none;
-                opacity: 1;
-                transition: transform @duration ease @duration;
-                transition-property: opacity, transform;
-            }
-        }
-
-        &-enter-done {
-            background-color: @white;
-        }
-        &-exit {
-            // &::after {
-            //     transform: scaleX(0);
+            // .Project {
+            //     transform: none;
+            //     opacity: 1;
+            //     transition: transform @duration @ease @duration;
+            //     transition-property: transform, opacity;
             // }
 
-            .Project {
-                opacity: 1;
+            &::after {
+                transform: scaleX(0);
+                transition: transform @duration @ease @duration;
             }
+        }
+
+        // &-enter-done {
+        //     background-color: @white;
+        // }
+
+        &-exit {
+            &::after {
+                transform: scaleX(0);
+            }
+
+            // .Project {
+            //     opacity: 1;
+            // }
         }
         &-exit-active {
-            // &::after {
-            //     transform: scaleX(1);
+            &::after {
+                transform-origin: left;
+                transform: scaleX(1);
+                transition: transform @duration @ease;
+            }
+
+            // .Project {
+            //     transform: translateX(-200px);
             //     opacity: 0;
-            //     transition: transform @duration @ease;
+            //     transition: transform @duration ease;
             //     transition-property: opacity, transform;
             // }
-
-            .Project {
-                transform: translateX(-200px);
-                opacity: 0;
-                transition: transform @duration ease;
-                transition-property: opacity, transform;
-            }
         }
 
         &-exit-done {
-            opacity: 0;
+            // opacity: 0;
             // display: none;
-            transform: scaleX(1);
-            transition: transform @duration @ease;
+            // transform: scaleX(1);
+            // transition: transform @duration @ease;
             
-            .Project {
+            // .Project {
                 
-            }
+            // }
         }
 
         &-appear {
@@ -137,14 +147,14 @@ html, body {
         // max-width: @content-max-width;
         // margin: 0 auto;
         // .max-width();
-        padding-top: 120px;
+        padding-top: 136px; // 120px;
         transform-style: preserve-3d;
 
         &__title-container {
             width: 100vw;
             height: 100vh;
             position: fixed;
-            z-index: 20;
+            // z-index: 20;
             pointer-events: none;
             > * {
                 pointer-events: none;

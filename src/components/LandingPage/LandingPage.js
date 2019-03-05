@@ -1,8 +1,13 @@
 import React, {Component} from 'react';
 import classnames from 'classnames';
 import PropTypes from 'prop-types';
-
+import {CSSTransition} from 'react-transition-group';
 import './LandingPage.css';
+
+// images
+import overImage from '../../img/argo/hover_sample.png';
+import overImage2 from '../../img/argo/hover_sample2.png';
+
 
 const jobs = [
     {employer: 'Outdoor Voices', year: '2018', state: 'up'},
@@ -10,6 +15,11 @@ const jobs = [
     {employer: 'American Express', year: '2016', state: 'up'},
     {employer: 'Agro Energy', year: '2016', state: 'up'},
     {employer: 'Viggle', year: '2016', state: 'up'}
+];
+
+const images = [
+    overImage,
+    overImage2
 ];
 
 class LandingPage extends Component {
@@ -63,14 +73,33 @@ class LandingPage extends Component {
 
     getJobClasses(job, index) {
         const {overIndex} = this.state
-        return classnames('LandingPage__job', 'spintro', {
+        return classnames('LandingPage__job', {
             'LandingPage__job--over': overIndex === index
         });
     }
 
     render() {
+        const {overIndex} = this.state;
         return (
             <div className="LandingPage">
+                    {images.map((image, index) => (
+                        <CSSTransition
+                            key={`landing-page-image-${index}`}
+                            in={overIndex === index}
+                            timeout={550}
+                            classNames="LandingPage-image-transition"
+                            unmountOnExit
+                            mountOnEnter
+                            appear
+                        >
+                            <div className="LandingPage__hover-image-container">
+                                <img
+                                    className="LandingPage__hover-image"
+                                    src={image}
+                                />
+                            </div>
+                        </CSSTransition>
+                    ))}
                 <ul className="LandingPage__jobs">
                 {
                     jobs.map((job, index) => (
@@ -87,7 +116,7 @@ class LandingPage extends Component {
                             onMouseOut={this.onMouseOut}
                             onClick={this.onClick}
                         >
-                            <div className="LandingPage__employeer">
+                            <div className="LandingPage__employeer title">
                                 {job.employer}
                             </div>
                             <div className="LandingPage__year">
@@ -97,8 +126,6 @@ class LandingPage extends Component {
                     ))
                 }
                 </ul>
-                <div className="LandingPage__photo">
-                </div>
             </div>
         );
     }

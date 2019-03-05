@@ -9,6 +9,7 @@ import iphoneSingle from '../img/argo/agro-iphone-single.png';
 import iphone_1_3 from '../img/argo/iphone-black-left.png';
 import iphone_2_3 from '../img/argo/iphone-black-center.png';
 import iphone_3_3 from '../img/argo/iphone-black-right.png';
+import video_loop from '../img/argo/agro-loop-cut.mp4';
 
 import util from '../utils/util';
 
@@ -41,92 +42,100 @@ const agro = {
             // }
         },
         {
-            type: 'image',
-            class: 'agro__desktop',
-            src: desktop,
-            name: 'desktop',
-            style: {'backgroundColor': '#171719', 'paddingTop': '100px'},
-            // imageScrollStyle: (pct) => {
-            //     const pctCWN = 1 - util.getScrollPctCWN(pct);
-            //     return {
-            //         transform: `translateY(${10 + (60 * pctCWN)}px)`
-            //     };
-            // }
-        },
-        {
-            type: 'image',
-            class: 'agro__handphone',
-            src: handPhone,
-            name: 'handPhone',
-            // imageScrollStyle: (pct) => {
-            //     const pctCWN = 1 - util.getScrollPctCWN(pct);
-            //     return {
-            //         transform: `translateY(${10 + (60 * pctCWN)}px)`
-            //     };
-            // }
-        },
-        {
-            type: 'image-multi',
-            class: '',
-            name: 'iphone-multi',
-            style: {
-                backgroundColor: '#171719'
-            },
-            images: [
-                {
-                    type: 'image',
-                    className: 'agro__iphone_1_3',
-                    src: iphone_1_3,
-                    name: 'iphone-1-of-3'
-                },
-                {
-                    type: 'image',
-                    className: 'agro__iphone_2_3',
-                    src: iphone_2_3,
-                    name: 'iphone-2-of-3'
-                },
-                {
-                    type: 'image',
-                    className: 'agro__iphone_3_3',
-                    src: iphone_3_3,
-                    name: 'iphone-3-of-3'
-                }
-            ]
-        },
-        {
-            type: 'image',
-            class: '',
-            src: iphoneSingle,
-            name: 'iphone-single',
-            style: {'backgroundColor': '#171719'}
-        },
-        {
-            type: 'image',
-            class: '',
-            src: handWatch,
-            name: 'hand-watch'
-        },
-        {
-            type: 'image',
-            class: '',
-            src: watches,
-            name: 'watches'
-        },
-        {
             type: 'video',
             class: '',
             name: 'grid',
-            videoId: 'dlaDXbDyuys',
+            // videoId: 'dlaDXbDyuys',
+            src: video_loop,
             aspectRatio: 1.778
-        },
-        {
-            type: 'details',
-            class: '',
-            name: 'details',
-            role: 'Sr. Interaction Designer',
-            client: 'Agro Energy',
-            year: '2016',
         }
+        // {
+        //     type: 'image',
+        //     class: 'agro__desktop',
+        //     src: desktop,
+        //     name: 'desktop',
+        //     style: {'backgroundColor': '#171719', 'paddingTop': '100px'},
+        //     // imageScrollStyle: (pct) => {
+        //     //     const pctCWN = 1 - util.getScrollPctCWN(pct);
+        //     //     return {
+        //     //         transform: `translateY(${10 + (60 * pctCWN)}px)`
+        //     //     };
+        //     // }
+        // },
+        // {
+        //     type: 'image',
+        //     class: 'agro__handphone',
+        //     src: handPhone,
+        //     name: 'handPhone',
+        //     // imageScrollStyle: (pct) => {
+        //     //     const pctCWN = 1 - util.getScrollPctCWN(pct);
+        //     //     return {
+        //     //         transform: `translateY(${10 + (60 * pctCWN)}px)`
+        //     //     };
+        //     // }
+        // },
+        // {
+        //     type: 'image-multi',
+        //     class: '',
+        //     name: 'iphone-multi',
+        //     style: {
+        //         backgroundColor: '#171719'
+        //     },
+        //     images: [
+        //         {
+        //             type: 'image',
+        //             className: 'agro__iphone_1_3',
+        //             src: iphone_1_3,
+        //             name: 'iphone-1-of-3'
+        //         },
+        //         {
+        //             type: 'image',
+        //             className: 'agro__iphone_2_3',
+        //             src: iphone_2_3,
+        //             name: 'iphone-2-of-3'
+        //         },
+        //         {
+        //             type: 'image',
+        //             className: 'agro__iphone_3_3',
+        //             src: iphone_3_3,
+        //             name: 'iphone-3-of-3'
+        //         }
+        //     ]
+        // },
+        // {
+        //     type: 'image',
+        //     class: '',
+        //     src: iphoneSingle,
+        //     name: 'iphone-single',
+        //     style: {'backgroundColor': '#171719'}
+        // },
+        // {
+        //     type: 'image',
+        //     class: '',
+        //     src: handWatch,
+        //     name: 'hand-watch'
+        // },
+        // {
+        //     type: 'image',
+        //     class: '',
+        //     src: watches,
+        //     name: 'watches'
+        // },
+        // {
+        //     type: 'video',
+        //     class: '',
+        //     name: 'grid',
+        //     videoId: 'dlaDXbDyuys',
+        //     aspectRatio: 1.778
+        // },
+        // {
+        //     type: 'details',
+        //     class: '',
+        //     name: 'details',
+        //     role: 'Sr. Interaction Designer',
+        //     client: 'Agro Energy',
+        //     year: '2016',
+        // }
     ]
 }
 

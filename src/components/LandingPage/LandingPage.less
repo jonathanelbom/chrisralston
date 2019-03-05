@@ -41,6 +41,10 @@
             display: none;
         }
 
+        &-exit {
+            z-index: 20;
+        }
+
         &-exit::after {
             display: block;
             transform-origin: right;
@@ -71,6 +75,33 @@
             transform: scaleX(0);
             transition: transform @duration @ease @duration;
         }
+
+        &-appear-done::after {
+            display: none;
+        }
+    }
+
+    &__hover-images {
+        position: absolute;
+        height: 100vh;
+        width: 100%;
+        top: 0;
+        left: 0;
+        // background-color: rgba(255, 0, 0, 0.2);
+    }
+
+    &__hover-image-container {
+        position: absolute;
+        height: 100%;
+        width: auto;
+        top: 0;
+        right: 0;
+        overflow: hidden;
+    }
+
+    &__hover-image {
+        height: 100%;
+        width: auto;
     }
 
     &__jobs {
@@ -118,6 +149,75 @@
     //     animation-duration: 2000ms;
     //     animation-timing-function: ease;
     // }
+
+    .LandingPage-image-transition {
+        transform-origin: left;
+
+        &-enter {
+            transform: translate3d(-25%, 0, 0);
+            
+            .LandingPage__hover-image {
+                transform: translateX(100%);
+            }
+        }
+
+        &-enter-active {
+            transform: translate3d(0, 0, 0);
+            transition: transform 550ms @ease;
+
+            .LandingPage__hover-image {
+                transform: translateX(0%);
+                transition: transform 550ms @ease;    
+            }
+        }
+
+        &-enter-done{
+            transform: none;
+            
+            .LandingPage__hover-image {
+                transform: none;
+            }
+        }
+
+        &-exit {
+            transform: translate3d(0, 0, 0);
+            transition: transform 550ms @ease;
+
+            .LandingPage__hover-image {
+                transform: translateX(0%);
+                transition: transform 550ms @ease;    
+            }
+        }
+
+        &-exit-active {
+            transform: translate3d(-25%, 0, 0);
+            transition: transform 550ms @ease;
+
+            .LandingPage__hover-image {
+                transform: translateX(100%);
+                transition: transform 550ms @ease;    
+            }
+        }
+
+        &-exit-done {
+            display: none;
+        }
+
+        &-appear::after {
+            display: block;
+            transform: scaleX(1);
+        }
+
+        &-appear-active::after {
+            display: block;
+            transform: scaleX(0);
+            transition: transform @duration @ease @duration;
+        }
+
+        &-appear-done::after {
+            display: none;
+        }
+    }
 }
 
 @keyframes rotateInY{

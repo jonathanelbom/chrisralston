@@ -30,6 +30,7 @@ body {
   top: 0;
   left: 0;
   width: 100%;
+  background-color: #fff;
 }
 .ChrisRalston .Project-wrapper::after {
   content: '';
@@ -38,34 +39,22 @@ body {
   right: 0;
   bottom: 0;
   left: 0;
-  transform: scaleX(0.85);
-  transform-origin: left;
+  transform: scaleX(0);
+  transform-origin: right;
   background-color: #fff;
 }
-.ChrisRalston .Project-transition-enter .Project {
-  transform: translateX(200px);
-  opacity: 0;
-}
-.ChrisRalston .Project-transition-enter-active .Project {
+.ChrisRalston .Project-transition-enter::after {
   transform: none;
-  opacity: 1;
-  transition: transform 600ms ease 600ms;
-  transition-property: opacity, transform;
 }
-.ChrisRalston .Project-transition-enter-done {
-  background-color: #fff;
+.ChrisRalston .Project-transition-enter-active::after {
+  transform: scaleX(0);
+  transition: transform 600ms cubic-bezier(1, 0, 0, 1) 600ms;
 }
-.ChrisRalston .Project-transition-exit .Project {
-  opacity: 1;
+.ChrisRalston .Project-transition-exit::after {
+  transform: scaleX(0);
 }
-.ChrisRalston .Project-transition-exit-active .Project {
-  transform: translateX(-200px);
-  opacity: 0;
-  transition: transform 600ms ease;
-  transition-property: opacity, transform;
-}
-.ChrisRalston .Project-transition-exit-done {
-  opacity: 0;
+.ChrisRalston .Project-transition-exit-active::after {
+  transform-origin: left;
   transform: scaleX(1);
   transition: transform 600ms cubic-bezier(1, 0, 0, 1);
 }
@@ -85,14 +74,13 @@ body {
   max-height: 100vh;
 }
 .ChrisRalston .Project {
-  padding-top: 120px;
+  padding-top: 136px;
   transform-style: preserve-3d;
 }
 .ChrisRalston .Project__title-container {
   width: 100vw;
   height: 100vh;
   position: fixed;
-  z-index: 20;
   pointer-events: none;
 }
 .ChrisRalston .Project__title-container > * {
